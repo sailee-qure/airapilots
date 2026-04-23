@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aira — The path to decentralised and integrated HIV care · Draft v6</title>
+<style>
+  :root {
+    --ink: #111;
+    --ink-2: #444;
+    --ink-3: #777;
+    --line: #e5e5e5;
+    --bg: #fff;
+    --bg-2: #fafafa;
+    --pending: #f5f5f5;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px; line-height: 1.55;
+  }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 48px 32px 120px; }
+
+  section { border-top: 2px solid var(--ink); padding: 40px 0 8px; margin-top: 40px; }
+  section:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+  .sec-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 6px; font-weight: 600; }
+
+  h1 { font-size: 32px; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 12px; }
+  h2 { font-size: 24px; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 8px; }
+  h3 { font-size: 17px; font-weight: 600; margin: 28px 0 10px; }
+  h4 { font-size: 14px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-2); margin: 22px 0 8px; }
+  p { margin: 0 0 14px; }
+  ul, ol { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+
+  /* Intro — path description */
+  .vision-intro { margin: 0 0 28px; }
+  .vision-intro p.lead { font-size: 16px; color: var(--ink); margin: 0 0 14px; line-height: 1.65; }
+  .vision-intro p.lead em { font-style: normal; font-weight: 600; }
+
+  /* Flow-line navigation — vertical stacked cards connected by a line */
+  .flow-nav {
+    margin: 32px 0 0;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0;
+  }
+  .flow-spine {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .flow-end-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    font-weight: 700;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin-bottom: 6px;
+    white-space: nowrap;
+    padding: 8px 4px;
+    border: 1px solid var(--ink);
+    background: var(--bg);
+  }
+  .flow-end-label::before {
+    content: "";
+  }
+  .flow-line {
+    width: 2px;
+    flex: 1;
+    background: var(--ink);
+    position: relative;
+  }
+  .flow-line::before {
+    content: "▲";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--bg);
+    padding: 0 2px;
+  }
+  .flow-start {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 600;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin-top: 14px;
+    white-space: nowrap;
+  }
+  .flow-cards { display: flex; flex-direction: column; gap: 18px; }
+  .flow-card-wrap { position: relative; padding-left: 30px; }
+  .flow-card-wrap::before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 38px;
+    width: 80px;
+    height: 2px;
+    background: var(--ink);
+  }
+  .flow-card-wrap::after {
+    content: "↑";
+    position: absolute;
+    left: -25px;
+    top: -18px;
+    transform: translateX(-50%);
+    font-size: 18px;
+    color: var(--ink);
+    font-weight: 600;
+    background: var(--bg);
+    padding: 0 4px;
+  }
+  .flow-card-wrap:first-child::after { display: none; }
+
+  .nav-card {
+    border: 1px solid var(--ink);
+    padding: 18px 20px;
+    display: block;
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--bg);
+    transition: background 0.15s;
+  }
+  .nav-card:hover { background: var(--bg-2); }
+  .nav-header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+  .nav-site { font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; margin: 0; }
+  .nav-country { font-size: 12px; color: var(--ink-3); margin: 0; }
+  .nav-story { font-size: 14px; color: var(--ink); line-height: 1.55; margin: 0 0 10px; }
+  .nav-link { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); font-weight: 600; margin: 0; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 14px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-3); border-bottom: 1px solid var(--ink); }
+  tr:last-child td { border-bottom: 1px solid var(--ink); }
+
+  blockquote { margin: 14px 0; padding: 14px 20px; border-left: 3px solid var(--ink); color: var(--ink-2); font-style: italic; background: var(--bg-2); }
+
+  /* Paraphrased feedback summary — not a direct quote */
+  .feedback {
+    margin: 14px 0;
+    padding: 14px 20px;
+    border-left: 3px solid var(--ink);
+    background: var(--bg-2);
+    color: var(--ink-2);
+    font-size: 14px;
+  }
+  .feedback-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .feedback p { margin: 0; }
+  .feedback strong { color: var(--ink); font-weight: 600; }
+
+  .tag { display: inline-block; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border: 1px solid var(--ink); border-radius: 2px; margin-left: 8px; vertical-align: middle; }
+  .tag-pending { background: var(--pending); border-style: dashed; }
+
+  .placeholder { background: var(--bg-2); border: 1px dashed var(--ink-3); padding: 14px 16px; margin: 10px 0; font-size: 13px; color: var(--ink-2); font-family: "SF Mono", Menlo, Monaco, Consolas, monospace; }
+
+  .note { background: var(--bg-2); border-left: 3px solid var(--ink-3); padding: 12px 16px; margin: 14px 0; font-size: 14px; color: var(--ink-2); }
+  .note strong { color: var(--ink); }
+
+  /* Combined image + overview card */
+  .site-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--ink);
+    margin: 12px 0 20px;
+    overflow: hidden;
+  }
+  .site-hero-image {
+    background: var(--bg-2);
+    border-right: 1px dashed var(--ink-3);
+    padding: 40px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 13px;
+    color: var(--ink-2);
+    font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+    min-height: 200px;
+  }
+  .site-hero-info {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .site-hero-info dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 12px;
+    margin: 0;
+    font-size: 13px;
+  }
+  .site-hero-info dt {
+    font-weight: 600;
+    color: var(--ink-3);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding-top: 3px;
+  }
+  .site-hero-info dd {
+    margin: 0;
+    color: var(--ink);
+  }
+
+  /* Key-value summary — used in footer */
+  .kv { display: grid; grid-template-columns: 180px 1fr; gap: 6px 16px; font-size: 14px; margin: 10px 0 20px; padding: 12px 16px; background: var(--bg-2); border: 1px solid var(--line); }
+  .kv dt { font-weight: 600; color: var(--ink-2); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .kv dd { margin: 0; }
+
+  /* Rate metric (Adamawa) */
+  .metric-line { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .metric-line:last-child { border-bottom: 1px solid var(--ink); }
+  .metric-val { font-size: 22px; font-weight: 600; line-height: 1.1; }
+  .metric-text { font-size: 14px; color: var(--ink-2); }
+  .metric-text strong { color: var(--ink); }
+
+  /* Bar chart (Enugu) */
+  .barchart { margin: 16px 0 12px; }
+  .bar-row { display: grid; grid-template-columns: 140px 1fr 90px; gap: 12px; align-items: center; margin-bottom: 10px; font-size: 13px; }
+  .bar-label { color: var(--ink-2); font-weight: 600; font-size: 12px; letter-spacing: 0.03em; text-transform: uppercase; }
+  .bar-track { display: flex; height: 32px; border: 1px solid var(--ink); }
+  .bar-track.target { border-style: dashed; }
+  .seg { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .seg-1 { background: #111; color: #fff; }
+  .seg-2 { background: repeating-linear-gradient(45deg, #666, #666 4px, #888 4px, #888 8px); color: #fff; }
+  .seg-3 { background: #e8e8e8; color: #222; border-left: 1px solid #fff; }
+  .bar-total { font-size: 13px; color: var(--ink-2); font-weight: 600; }
+  .legend { font-size: 12px; color: var(--ink-2); margin: 12px 0 0; }
+  .legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .swatch { display: inline-block; width: 14px; height: 14px; border: 1px solid var(--ink); flex-shrink: 0; }
+  .chart-note { font-size: 12px; color: var(--ink-3); margin: 8px 0 0; font-style: italic; }
+
+  /* Insight callout — inside site sections */
+  .insight {
+    border: 1px solid var(--ink);
+    padding: 16px 20px;
+    margin: 20px 0;
+    background: var(--bg);
+  }
+  .insight-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 6px; font-weight: 600; }
+  .insight-line { font-size: 16px; font-weight: 600; color: var(--ink); margin: 0 0 8px; line-height: 1.4; }
+  .insight-impl { font-size: 13px; color: var(--ink-2); margin: 0; line-height: 1.5; }
+
+  /* Workflow visualization */
+  .workflow { display: flex; flex-wrap: nowrap; align-items: stretch; margin: 16px 0 12px; gap: 0; }
+  .wf-step {
+    flex: 1 1 0; min-width: 0;
+    border: 1px solid var(--ink);
+    padding: 12px 12px 14px;
+    display: flex; flex-direction: column; gap: 6px;
+    background: var(--bg);
+  }
+  .wf-icon { font-size: 22px; line-height: 1; }
+  .wf-label { font-weight: 600; font-size: 13px; line-height: 1.25; }
+  .wf-desc { font-size: 12px; color: var(--ink-2); line-height: 1.35; }
+  .wf-arrow {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: var(--ink-2); font-weight: 600;
+    padding: 0 8px; flex: 0 0 auto;
+  }
+  .wf-note {
+    font-size: 12px; color: var(--ink-2); font-style: italic;
+    margin: 6px 0 0; padding: 8px 12px;
+    border-left: 3px solid var(--ink-3); background: var(--bg-2);
+  }
+
+  /* Vision block */
+  .vision {
+    border-left: 4px solid var(--ink);
+    padding: 12px 16px 14px;
+    background: var(--bg-2);
+    margin: 10px 0 20px;
+  }
+  .vision p { margin: 0; font-size: 15px; }
+
+  /* Planned reach block */
+  .scale {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: center;
+    border: 1px solid var(--ink);
+    padding: 14px 18px;
+    margin: 10px 0 14px;
+  }
+  .scale-goal {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 600;
+    margin: 0 0 2px;
+  }
+  .scale-val {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+  .scale-text {
+    font-size: 14px;
+    color: var(--ink-2);
+    line-height: 1.4;
+  }
+  .scale-text strong { color: var(--ink); }
+
+  .review-bar { position: sticky; top: 0; background: var(--ink); color: #fff; padding: 10px 16px; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; z-index: 10; margin: -48px -32px 32px; }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 24px 16px 80px; }
+    .flow-nav { grid-template-columns: 40px 1fr; }
+    .flow-card-wrap { padding-left: 16px; }
+    .flow-card-wrap::before { left: -28px; width: 40px; }
+    .flow-card-wrap::after { left: -20px; }
+    .flow-start, .flow-end-label { font-size: 10px; }
+    .kv { grid-template-columns: 1fr; }
+    .review-bar { margin: -24px -16px 24px; }
+    table { font-size: 13px; }
+    th, td { padding: 8px; }
+    .bar-row { grid-template-columns: 1fr; gap: 6px; }
+    .metric-line { grid-template-columns: 1fr; gap: 4px; }
+    .workflow { flex-direction: column; }
+    .wf-arrow { transform: rotate(90deg); padding: 4px 0; }
+    .scale { grid-template-columns: 1fr; gap: 6px; }
+    .site-hero { grid-template-columns: 1fr; }
+    .site-hero-image { border-right: none; border-bottom: 1px dashed var(--ink-3); min-height: 160px; padding: 30px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="review-bar">● Review Draft v6 — Content only, design pending</div>
+
+  <!-- SECTION 1 — INTRO + NAVIGATION -->
+  <section id="intro">
+    <h1>Building a path to decentralised and integrated HIV care</h1>
+
+    <div class="vision-intro">
+      <p class="lead">Imagine a care system where health workers are freed from admin work to focus fully on the patient in front of them. Integrated pathways run from day one, without the overhead of upskilling and supervision. HIV services move closer to where patients live — decentralised to PHCs and the community without compromise in quality. Automated, language-matched outreach lifts the tracking burden off small teams and keeps adherence on course. Every clinical decision and every patient conversation is personalised to context. And behind it all, data flows in real time — timely, accurate, and complete enough for full program oversight.</p>
+    </div>
+
+    <div class="flow-nav">
+      <div class="flow-spine">
+        <div class="flow-end-label">One vision</div>
+        <div class="flow-line"></div>
+        <div class="flow-start">Three stories</div>
+      </div>
+      <div class="flow-cards">
+        <div class="flow-card-wrap">
+          <a class="nav-card" href="#s-enugu">
+            <div class="nav-header">
+              <p class="nav-site">Enugu</p>
+              <p class="nav-country">Nigeria 🇳🇬 · Caritas Health</p>
+            </div>
+            <p class="nav-story">Point-of-care digitisation that integrates with the national EMR — restoring clinical face-time and eliminating paper-to-EMR double handling at ART clinics and the PHC.</p>
+            <p class="nav-link">Open site detail →</p>
+          </a>
+        </div>
+        <div class="flow-card-wrap">
+          <a class="nav-card" href="#s-adamawa">
+            <div class="nav-header">
+              <p class="nav-site">Adamawa</p>
+              <p class="nav-country">Nigeria 🇳🇬 · Adamawa State + AHNI</p>
+            </div>
+            <p class="nav-story">Automated multilingual patient outreach that scales retention work without scaling capacity — and gains patient and provider trust in the process.</p>
+            <p class="nav-link">Open site detail →</p>
+          </a>
+        </div>
+        <div class="flow-card-wrap">
+          <a class="nav-card" href="#s-nairobi">
+            <div class="nav-header">
+              <p class="nav-site">Nairobi</p>
+              <p class="nav-country">Kenya 🇰🇪 · Kenya Red Cross Society</p>
+            </div>
+            <p class="nav-story">Ambient digital care at the point of outreach — bringing continuity, quality, and consistency to decentralised services for key populations.</p>
+            <p class="nav-link">Open site detail →</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION — ENUGU -->
+  <section id="s-enugu">
+    <p class="sec-eyebrow">Site detail</p>
+    <h2>Enugu, Nigeria</h2>
+
+    <h3>Overview</h3>
+    <div class="site-hero">
+      <div class="site-hero-image">[IMAGE / VIDEO — Aira Co-Consult at ART centre or PHC team]</div>
+      <div class="site-hero-info">
+        <dl>
+          <dt>Sites</dt><dd>Two ART centres and one primary health centre</dd>
+          <dt>Partner</dt><dd>Caritas Health</dd>
+          <dt>Module</dt><dd>Aira Co-Consult + Aira Reach</dd>
+          <dt>Status</dt><dd>Live since late March 2026</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3>Vision</h3>
+    <div class="vision">
+      <p>Ambient point-of-care digitisation can eliminate the documentation tax on every clinical encounter — restoring face-time with patients, erasing the paper-to-EMR double handling that drains data operator days, and making high-quality differentiated service delivery possible even at the primary health centre level, where four staff carry HIV services alongside general primary care with limited specialist oversight.</p>
+    </div>
+
+    <div class="insight">
+      <p class="insight-label">What we're seeing</p>
+      <p class="insight-line">For every minute a provider spends talking to the client, the client spends over a minute watching them write.</p>
+      <p class="insight-impl">Documentation is the single biggest threat to counselling quality at the point of care.</p>
+    </div>
+
+    <!-- BAR CHART -->
+    <div class="barchart">
+      <div class="bar-row">
+        <div class="bar-label">Today<br>(baseline)</div>
+        <div class="bar-track">
+          <div class="seg seg-1" style="width: 43%">43%</div>
+          <div class="seg seg-2" style="width: 30%">30%</div>
+          <div class="seg seg-3" style="width: 27%">27%</div>
+        </div>
+        <div class="bar-total">5.9 min</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Expected<br>with Aira</div>
+        <div class="bar-track target">
+          <div class="seg seg-1" style="width: 90%">90%</div>
+          <div class="seg seg-2" style="width: 5%">5%</div>
+          <div class="seg seg-3" style="width: 5%">&lt;5%</div>
+        </div>
+        <div class="bar-total">target</div>
+      </div>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><span class="swatch seg-1"></span>Direct clinical engagement with the client</div>
+      <div class="legend-item"><span class="swatch seg-2"></span>Client present but idle (watching provider document)</div>
+      <div class="legend-item"><span class="swatch seg-3"></span>Documentation before or after the encounter</div>
+    </div>
+    <p class="chart-note">Target: direct clinical engagement becomes the dominant use of every minute with the client; documentation before or after drops below 5% through direct sync to the national records system. Measurement of actual intervention impact is underway.</p>
+
+    <h3>Early signals <span class="tag tag-pending">🟡 Measurement in progress</span></h3>
+    <ul>
+      <li>Documentation time spent after each consultation eliminated.</li>
+      <li>Increased proportion of face-time and clinical attention per client encounter.</li>
+      <li>On-time, complete daily reporting of HIV testing services, including integrated screening for negative outcomes.</li>
+    </ul>
+
+    <h3>Aira in action</h3>
+    <div class="workflow">
+      <div class="wf-step">
+        <div class="wf-icon">🗨️</div>
+        <div class="wf-label">Provider and client in conversation</div>
+        <div class="wf-desc">The consultation runs as it always has.</div>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-icon">👂</div>
+        <div class="wf-label">Aira listens and structures</div>
+        <div class="wf-desc">Notes are captured ambiently in real time.</div>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-icon">🔄</div>
+        <div class="wf-label">Direct sync to national records</div>
+        <div class="wf-desc">No paper form, no evening data entry backlog.</div>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-icon">✓</div>
+        <div class="wf-label">Clinician moves on</div>
+        <div class="wf-desc">Face-time restored; data operator load reduced.</div>
+      </div>
+    </div>
+    <p class="wf-note">At the primary health centre, Aira also surfaces protocol prompts during the consult — reinforcing quality without adding a tool to learn.</p>
+
+    <h3>Planned reach</h3>
+    <div class="scale">
+      <div>
+        <p class="scale-goal">Goal</p>
+        <p class="scale-val">500+ / month</p>
+      </div>
+      <div class="scale-text"><strong>Covering over 500 monthly HIV testing and ART refill encounters</strong> across the two ART hubs and the primary health centre — the full repeating interaction load of the sites currently in the pilot.</div>
+    </div>
+  </section>
+
+  <!-- SECTION — ADAMAWA -->
+  <section id="s-adamawa">
+    <p class="sec-eyebrow">Site detail</p>
+    <h2>Adamawa, Nigeria</h2>
+
+    <h3>Overview</h3>
+    <div class="site-hero">
+      <div class="site-hero-image">[IMAGE / VIDEO — Case manager with Aira Reach dashboard or sample call audio]</div>
+      <div class="site-hero-info">
+        <dl>
+          <dt>Site</dt><dd>Modibbo Adama University Teaching Hospital ART centre</dd>
+          <dt>Partner</dt><dd>Adamawa State Government and AHNI</dd>
+          <dt>Module</dt><dd>Aira Reach</dd>
+          <dt>Status</dt><dd>Live since March 2026</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3>Vision</h3>
+    <div class="vision">
+      <p>A small team of case managers at Modibbo Adama University Teaching Hospital tracks over two thousand people living with HIV — routine reminder calls eating into the time that should go to home visits, complex cases, and adherence counselling. Aira handles reminders and missed-appointment calls autonomously in the patient's own language, with a voice modelled on their case manager — flagging only uncertain and unreachable cases for close human follow-up, and freeing capacity for targeted, personalised adherence support.</p>
+    </div>
+
+    <div class="insight">
+      <p class="insight-label">What we're seeing</p>
+      <p class="insight-line">Half of a case manager's productive time is spent attempting phone calls that are never answered.</p>
+      <p class="insight-impl">Automating routine reminder outreach is not a nice-to-have — it is the single largest capacity unlock available today.</p>
+    </div>
+
+    <h3>Early signals <span class="tag">✓ Live data</span></h3>
+    <p>Early signals are already answering the hardest question for any automated outreach program: <em>will patients actually engage?</em></p>
+
+    <div class="metric-line">
+      <div class="metric-val">70%</div>
+      <div class="metric-text"><strong>Conversation success rate between AI and clients.</strong> Seven in ten patients engaged meaningfully with an AI caller speaking their language — in a setting where cold automated calls are routinely ignored.</div>
+    </div>
+    <div class="metric-line">
+      <div class="metric-val">75% / 67%</div>
+      <div class="metric-text"><strong>Rated the caller positively on tone</strong> — professional or respectful (75%), warm or friendly (67%). Patients cited the greeting, respectful tone, and convenience check as specific positives.</div>
+    </div>
+    <div class="metric-line">
+      <div class="metric-val">90%</div>
+      <div class="metric-text"><strong>Would trust reminders like these from their clinic</strong> — 60% at a high level of trust. Acceptance, historically the biggest barrier to automated outreach, is clearly answered.</div>
+    </div>
+    <div class="metric-line">
+      <div class="metric-val">20%</div>
+      <div class="metric-text"><strong>Small group of patients still preferred case-manager calls.</strong> When offered the choice between automated calls, human calls, SMS, WhatsApp, or none — only one in five chose the status quo.</div>
+    </div>
+
+    <p class="note">🟡 Impact on appointment attendance and interruption in treatment: measurement in progress.</p>
+
+    <h3>Aira in action</h3>
+    <div class="workflow">
+      <div class="wf-step">
+        <div class="wf-icon">📞</div>
+        <div class="wf-label">Aira calls seven days ahead</div>
+        <div class="wf-desc">Hausa-first, modelled on a case manager's voice.</div>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-icon">🗣️</div>
+        <div class="wf-label">Natural language switching</div>
+        <div class="wf-desc">Hausa or English, as the patient prefers.</div>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-icon">⏰</div>
+        <div class="wf-label">Reminder on appointment day</div>
+        <div class="wf-desc">A final prompt, or a reschedule flag.</div>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-icon">🔁</div>
+        <div class="wf-label">Follow-up calls to defaulters</div>
+        <div class="wf-desc">Rescheduling and follow-up on missed appointments.</div>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-icon">📊</div>
+        <div class="wf-label">Dashboard for case managers</div>
+        <div class="wf-desc">Every conversation logged; only clients needing a human surface on the short list.</div>
+      </div>
+    </div>
+
+    <h3>Planned reach</h3>
+    <div class="scale">
+      <div>
+        <p class="scale-goal">Goal</p>
+        <p class="scale-val">2,000+ patients</p>
+      </div>
+      <div class="scale-text"><strong>Covering on-time appointment reminders and adherence support for over 2,000 people living with HIV</strong> managed by the case manager team at Modibbo Adama University Teaching Hospital — the full cohort the facility is accountable for.</div>
+    </div>
+  </section>
+
+  <!-- SECTION — NAIROBI -->
+  <section id="s-nairobi">
+    <p class="sec-eyebrow">Site detail</p>
+    <h2>Nairobi, Kenya</h2>
+
+    <h3>Overview</h3>
+    <div class="site-hero">
+      <div class="site-hero-image">[IMAGE / VIDEO — Tablet at outreach camp or counsellor-client interaction]</div>
+      <div class="site-hero-info">
+        <dl>
+          <dt>Site</dt><dd>Kitengela Drop-in Centre and quarterly outreach camps</dd>
+          <dt>Partner</dt><dd>Kenya Red Cross Society</dd>
+          <dt>Module</dt><dd>Aira Co-Consult</dd>
+          <dt>Status</dt><dd>Live since April 2026</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3>Vision</h3>
+    <div class="vision">
+      <p>At Kitengela outreach camps, paper forms are filled redundantly, data is digitised heavily after each camp, and past client information is unavailable when it matters most. Ambient digital care at the point of outreach closes three gaps at once — continuity between quarterly camps, roll-out of new interventions and integrated care pathways, and consistency when less-experienced third-party staff supplement the core team during peak workload — raising the quality and coverage of decentralised services for key populations at scale.</p>
+    </div>
+
+    <h3>Early signals <span class="tag tag-pending">🟡 Quantitative results pending</span></h3>
+    <ul>
+      <li>100% digitisation of HIV testing and clinical assessment touch-points.</li>
+      <li>Adherence to built-in protocol support for Lenacapavir roll-out.</li>
+      <li>Time spent on documentation and reporting cut down by 5x.</li>
+    </ul>
+
+    <div class="feedback">
+      <p class="feedback-label">Feedback from DICE service providers</p>
+      <p>Aira is seen as enabling more meaningful interactions with clients. It supports clinical decision-making — suggesting management options, identifying when a client may need further care, and prompting next steps — while cutting the repetitive documentation burden. They recommend it as a valuable initiative for improving service delivery at the Drop-in Centre.</p>
+    </div>
+
+    <h3>Aira in action</h3>
+    <div class="workflow">
+      <div class="wf-step">
+        <div class="wf-icon">📱</div>
+        <div class="wf-label">Tablet at outreach camp</div>
+        <div class="wf-desc">One device replaces the stack of paper forms.</div>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-icon">👂</div>
+        <div class="wf-label">Ambient documentation</div>
+        <div class="wf-desc">Captured during the consult, not after.</div>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-icon">🔄</div>
+        <div class="wf-label">Digital continuity-of-care</div>
+        <div class="wf-desc">Past clinical and HIV risk context improves decision-making and counselling.</div>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step">
+        <div class="wf-icon">📋</div>
+        <div class="wf-label">Protocol on-device</div>
+        <div class="wf-desc">Consistent care regardless of which staff deliver it.</div>
+      </div>
+    </div>
+
+    <h3>Planned reach</h3>
+    <div class="scale">
+      <div>
+        <p class="scale-goal">Goal</p>
+        <p class="scale-val">300+ / month</p>
+      </div>
+      <div class="scale-text"><strong>Covering over 300 monthly screening and clinical care encounters</strong> delivered via outreach — extending from the starting cohort of female sex workers to four key population types served by the centre.</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <section id="footer">
+    <p class="sec-eyebrow">Footer</p>
+    <dl class="kv">
+      <dt>Brand</dt><dd>Aira by <strong>qure.ai</strong> · co-brand lock-up</dd>
+      <dt>Last updated</dt><dd>Auto-timestamp</dd>
+      <dt>Small print</dt><dd>On-going pilot data. Non-confidential share-out. Live sites; content updates as learning deepens in the field.</dd>
+    </dl>
+  </section>
+
+</div>
+</body>
+</html>
