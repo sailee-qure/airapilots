@@ -1,418 +1,982 @@
-[index.html](https://github.com/user-attachments/files/27016905/index.html)
+[index.html](https://github.com/user-attachments/files/27023421/index.html)
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aira — The path to decentralised and integrated HIV care · Draft v6</title>
+<title>Aira — Signals From The Field</title>
+<meta name="description" content="Building a path to decentralised and integrated HIV care — signals from Aira pilots across Nigeria and Kenya.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
   :root {
-    --ink: #111;
-    --ink-2: #444;
-    --ink-3: #777;
-    --line: #e5e5e5;
-    --bg: #fff;
-    --bg-2: #fafafa;
-    --pending: #f5f5f5;
+    /* Brand palette (BrandBook 2026) */
+    --peach: #ff7869;
+    --peach-soft: #ffe4df;
+    --peach-wash: #fff4f1;
+
+    /* Secondary accents (per user request) */
+    --indigo: #2B2993;          /* Bold Indigo */
+    --lavender-bright: #CDCCFA; /* Ambitious Lavender */
+    --yellow: #FFE7A6;          /* Optimistic Yellow */
+    --lavender-wash: #f0f0fd;
+    --yellow-wash: #fff8e8;
+
+    /* Surface + type */
+    --ai-black: #0f2332;
+    --ai-grey: #86949d;
+    --ink: #0f2332;
+    --ink-2: #3a4756;
+    --ink-3: #6c7a86;
+    --line: #e7ebee;
+    --line-soft: #f1f3f5;
+    --white: #ffffff;
+    --bg: #ffffff;
+    --bg-soft: #fafbfc;
+
+    --sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+
+    --radius: 4px;
+    --radius-lg: 10px;
+    --radius-xl: 14px;
   }
+
   * { box-sizing: border-box; }
-  html, body {
+  html { scroll-behavior: smooth; }
+  body {
     margin: 0; padding: 0;
-    background: var(--bg); color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-size: 16px; line-height: 1.55;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  .wrap { max-width: 820px; margin: 0 auto; padding: 48px 32px 120px; }
 
-  section { border-top: 2px solid var(--ink); padding: 40px 0 8px; margin-top: 40px; }
-  section:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
-  .sec-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 6px; font-weight: 600; }
-
-  h1 { font-size: 32px; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 12px; }
-  h2 { font-size: 24px; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 8px; }
-  h3 { font-size: 17px; font-weight: 600; margin: 28px 0 10px; }
-  h4 { font-size: 14px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-2); margin: 22px 0 8px; }
-  p { margin: 0 0 14px; }
-  ul, ol { margin: 0 0 14px; padding-left: 22px; }
-  li { margin-bottom: 6px; }
-
-  /* Intro — path description */
-  .vision-intro { margin: 0 0 28px; }
-  .vision-intro p.lead { font-size: 16px; color: var(--ink); margin: 0 0 14px; line-height: 1.65; }
-  .vision-intro p.lead em { font-style: normal; font-weight: 600; }
-
-  /* Flow-line navigation — vertical stacked cards connected by a line */
-  .flow-nav {
-    margin: 32px 0 0;
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 0;
-  }
-  .flow-spine {
+  /* ---------- HERO WRAPPER with gradient background image ---------- */
+  .hero-wrap {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-image: url('images/hero-bg.png');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    padding-bottom: 60px;
   }
-  .flow-end-label {
+  .hero-wrap .wrap-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 0;
+    gap: 16px;
+  }
+  .logo-top {
+    height: 44px;
+    width: auto;
+    display: block;
+  }
+  .tag-status {
+    font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+  }
+
+  /* ---------- Hero content ---------- */
+  .hero {
+    padding: 40px 0 0;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink);
-    font-weight: 700;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    margin-bottom: 6px;
-    white-space: nowrap;
-    padding: 8px 4px;
-    border: 1px solid var(--ink);
-    background: var(--bg);
+    font-weight: 500;
+    margin: 0 0 20px;
+    opacity: 0.8;
   }
-  .flow-end-label::before {
-    content: "";
+  h1 {
+    font-family: var(--sans);
+    font-size: 48px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    color: var(--ai-black);
+    margin: 0 0 24px;
+    max-width: 820px;
   }
-  .flow-line {
-    width: 2px;
-    flex: 1;
-    background: var(--ink);
+  h1 .h1-accent {
+    color: var(--indigo);
+    font-weight: 600;
+  }
+  .hero-lead {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink);
+    max-width: 760px;
+    margin: 0 0 44px;
+    font-weight: 400;
+  }
+
+  /* ---------- Flow diagram (reference style) ---------- */
+  .flow-diagram {
+    margin: 0;
+    padding: 48px 48px 48px 90px;
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 30px 80px -30px rgba(15, 35, 50, 0.2);
     position: relative;
   }
-  .flow-line::before {
-    content: "▲";
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 14px;
-    color: var(--ink);
-    background: var(--bg);
-    padding: 0 2px;
-  }
-  .flow-start {
+
+  .flow-vision-badge {
+    display: inline-block;
+    font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--peach);
+    font-weight: 500;
+    padding: 8px 18px;
+    border: 1.5px solid var(--peach);
+    background: var(--peach-wash);
+    border-radius: var(--radius);
+    position: absolute;
+    top: 40px;
+    left: 40px;
+  }
+
+  .flow-caption {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--ink-3);
-    font-weight: 600;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    margin-top: 14px;
-    white-space: nowrap;
+    font-weight: 500;
+    margin: 48px 0 20px;
   }
-  .flow-cards { display: flex; flex-direction: column; gap: 18px; }
-  .flow-card-wrap { position: relative; padding-left: 30px; }
+
+  /* Spine + cards container */
+  .flow-body {
+    position: relative;
+  }
+
+  .flow-spine {
+    position: absolute;
+    left: -42px;
+    top: 0;
+    bottom: 40px;
+    width: 2px;
+    background: var(--peach);
+  }
+  .flow-spine::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 9px solid var(--peach);
+  }
+
+  .flow-cards-v {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+  }
+  .flow-card-wrap {
+    position: relative;
+  }
   .flow-card-wrap::before {
     content: "";
     position: absolute;
-    left: -50px;
-    top: 38px;
-    width: 80px;
-    height: 2px;
-    background: var(--ink);
+    left: -42px;
+    top: 34px;
+    width: 42px;
+    height: 1.5px;
+    background: var(--peach);
   }
-  .flow-card-wrap::after {
-    content: "↑";
-    position: absolute;
-    left: -25px;
-    top: -18px;
-    transform: translateX(-50%);
-    font-size: 18px;
-    color: var(--ink);
-    font-weight: 600;
-    background: var(--bg);
-    padding: 0 4px;
-  }
-  .flow-card-wrap:first-child::after { display: none; }
-
   .nav-card {
-    border: 1px solid var(--ink);
-    padding: 18px 20px;
     display: block;
     text-decoration: none;
     color: var(--ink);
-    background: var(--bg);
-    transition: background 0.15s;
+    border: 1px solid var(--peach);
+    border-radius: var(--radius-lg);
+    padding: 22px 28px;
+    background: var(--white);
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
   }
-  .nav-card:hover { background: var(--bg-2); }
-  .nav-header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
-  .nav-site { font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; margin: 0; }
-  .nav-country { font-size: 12px; color: var(--ink-3); margin: 0; }
-  .nav-story { font-size: 14px; color: var(--ink); line-height: 1.55; margin: 0 0 10px; }
-  .nav-link { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); font-weight: 600; margin: 0; }
-
-  /* Tables */
-  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 14px; }
-  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  th { font-weight: 600; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-3); border-bottom: 1px solid var(--ink); }
-  tr:last-child td { border-bottom: 1px solid var(--ink); }
-
-  blockquote { margin: 14px 0; padding: 14px 20px; border-left: 3px solid var(--ink); color: var(--ink-2); font-style: italic; background: var(--bg-2); }
-
-  /* Paraphrased feedback summary — not a direct quote */
-  .feedback {
-    margin: 14px 0;
-    padding: 14px 20px;
-    border-left: 3px solid var(--ink);
-    background: var(--bg-2);
-    color: var(--ink-2);
-    font-size: 14px;
+  .nav-card:hover {
+    background: var(--peach-wash);
+    border-color: var(--peach);
+    transform: translateX(2px);
   }
-  .feedback-label {
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-3);
+  .nav-story {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 0 0 10px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+  .nav-story .highlight {
+    color: var(--peach);
     font-weight: 600;
-    margin: 0 0 6px;
   }
-  .feedback p { margin: 0; }
-  .feedback strong { color: var(--ink); font-weight: 600; }
-
-  .tag { display: inline-block; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border: 1px solid var(--ink); border-radius: 2px; margin-left: 8px; vertical-align: middle; }
-  .tag-pending { background: var(--pending); border-style: dashed; }
-
-  .placeholder { background: var(--bg-2); border: 1px dashed var(--ink-3); padding: 14px 16px; margin: 10px 0; font-size: 13px; color: var(--ink-2); font-family: "SF Mono", Menlo, Monaco, Consolas, monospace; }
-
-  .note { background: var(--bg-2); border-left: 3px solid var(--ink-3); padding: 12px 16px; margin: 14px 0; font-size: 14px; color: var(--ink-2); }
-  .note strong { color: var(--ink); }
-
-  /* Combined image + overview card */
-  .site-hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border: 1px solid var(--ink);
-    margin: 12px 0 20px;
-    overflow: hidden;
-  }
-  .site-hero-image {
-    background: var(--bg-2);
-    border-right: 1px dashed var(--ink-3);
-    padding: 40px 20px;
+  .nav-meta {
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 13px;
-    color: var(--ink-2);
-    font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
-    min-height: 200px;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding-top: 2px;
   }
+  .nav-site {
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--ink);
+    margin: 0;
+    font-weight: 400;
+  }
+  .nav-partner {
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--ink);
+    margin: 0;
+    font-weight: 600;
+    padding-left: 14px;
+    border-left: 1px solid var(--line);
+  }
+
+  /* ---------- Main wrap ---------- */
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 28px 120px; }
+
+  /* ---------- Site sections ---------- */
+  .site {
+    padding: 80px 0 24px;
+  }
+  .site + .site { border-top: 1px solid var(--line); }
+
+  .site-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--peach);
+    font-weight: 500;
+    margin: 0 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .site-eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 24px; height: 1.5px;
+    background: var(--peach);
+  }
+  /* Accent colour variants per site */
+  .site.site-enugu .site-eyebrow { color: var(--peach); }
+  .site.site-enugu .site-eyebrow::before { background: var(--peach); }
+  .site.site-adamawa .site-eyebrow { color: var(--indigo); }
+  .site.site-adamawa .site-eyebrow::before { background: var(--indigo); }
+  .site.site-nairobi .site-eyebrow { color: var(--indigo); }
+  .site.site-nairobi .site-eyebrow::before { background: var(--indigo); }
+
+  h2 {
+    font-family: var(--sans);
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    color: var(--ink);
+    margin: 0 0 32px;
+    max-width: 760px;
+  }
+
+  h3 {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 44px 0 16px;
+  }
+  /* Highlighted section label — used for Early signals */
+  h3.h3-accent {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--white);
+    background: var(--peach);
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    margin: 44px 0 20px;
+  }
+  h3.h3-accent::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--white);
+  }
+
+  /* ---------- Overview card (image left, details right) ---------- */
+  .site-hero {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    margin: 0 0 12px;
+    min-height: 260px;
+  }
+  .site-hero-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 260px;
+  }
+  .site-hero-image.enugu { background-image: url('images/enugu.png'); }
+  .site-hero-image.adamawa { background-image: url('images/adamawa.png'); background-position: center 30%; }
+  .site-hero-image.kitengela { background-image: url('images/kitengela.png'); }
   .site-hero-info {
-    padding: 18px 20px;
+    padding: 30px 34px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    justify-content: center;
+    background: var(--bg-soft);
   }
   .site-hero-info dl {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 4px 12px;
+    gap: 12px 18px;
     margin: 0;
-    font-size: 13px;
   }
   .site-hero-info dt {
-    font-weight: 600;
-    color: var(--ink-3);
-    font-size: 11px;
-    letter-spacing: 0.04em;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
+    color: var(--ink-3);
     padding-top: 3px;
+    white-space: nowrap;
   }
   .site-hero-info dd {
     margin: 0;
     color: var(--ink);
+    font-size: 14px;
+    line-height: 1.5;
   }
 
-  /* Key-value summary — used in footer */
-  .kv { display: grid; grid-template-columns: 180px 1fr; gap: 6px 16px; font-size: 14px; margin: 10px 0 20px; padding: 12px 16px; background: var(--bg-2); border: 1px solid var(--line); }
-  .kv dt { font-weight: 600; color: var(--ink-2); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
-  .kv dd { margin: 0; }
-
-  /* Rate metric (Adamawa) */
-  .metric-line { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding: 12px 0; border-bottom: 1px solid var(--line); }
-  .metric-line:last-child { border-bottom: 1px solid var(--ink); }
-  .metric-val { font-size: 22px; font-weight: 600; line-height: 1.1; }
-  .metric-text { font-size: 14px; color: var(--ink-2); }
-  .metric-text strong { color: var(--ink); }
-
-  /* Bar chart (Enugu) */
-  .barchart { margin: 16px 0 12px; }
-  .bar-row { display: grid; grid-template-columns: 140px 1fr 90px; gap: 12px; align-items: center; margin-bottom: 10px; font-size: 13px; }
-  .bar-label { color: var(--ink-2); font-weight: 600; font-size: 12px; letter-spacing: 0.03em; text-transform: uppercase; }
-  .bar-track { display: flex; height: 32px; border: 1px solid var(--ink); }
-  .bar-track.target { border-style: dashed; }
-  .seg { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; white-space: nowrap; }
-  .seg-1 { background: #111; color: #fff; }
-  .seg-2 { background: repeating-linear-gradient(45deg, #666, #666 4px, #888 4px, #888 8px); color: #fff; }
-  .seg-3 { background: #e8e8e8; color: #222; border-left: 1px solid #fff; }
-  .bar-total { font-size: 13px; color: var(--ink-2); font-weight: 600; }
-  .legend { font-size: 12px; color: var(--ink-2); margin: 12px 0 0; }
-  .legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-  .swatch { display: inline-block; width: 14px; height: 14px; border: 1px solid var(--ink); flex-shrink: 0; }
-  .chart-note { font-size: 12px; color: var(--ink-3); margin: 8px 0 0; font-style: italic; }
-
-  /* Insight callout — inside site sections */
-  .insight {
-    border: 1px solid var(--ink);
-    padding: 16px 20px;
-    margin: 20px 0;
-    background: var(--bg);
+  /* ---------- Read more link (replaces pill) ---------- */
+  .read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    padding: 8px 0;
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--peach);
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin: 8px 0 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
   }
-  .insight-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 6px; font-weight: 600; }
-  .insight-line { font-size: 16px; font-weight: 600; color: var(--ink); margin: 0 0 8px; line-height: 1.4; }
-  .insight-impl { font-size: 13px; color: var(--ink-2); margin: 0; line-height: 1.5; }
-
-  /* Workflow visualization */
-  .workflow { display: flex; flex-wrap: nowrap; align-items: stretch; margin: 16px 0 12px; gap: 0; }
-  .wf-step {
-    flex: 1 1 0; min-width: 0;
-    border: 1px solid var(--ink);
-    padding: 12px 12px 14px;
-    display: flex; flex-direction: column; gap: 6px;
-    background: var(--bg);
+  .read-more-btn:hover {
+    opacity: 0.75;
   }
-  .wf-icon { font-size: 22px; line-height: 1; }
-  .wf-label { font-weight: 600; font-size: 13px; line-height: 1.25; }
-  .wf-desc { font-size: 12px; color: var(--ink-2); line-height: 1.35; }
-  .wf-arrow {
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px; color: var(--ink-2); font-weight: 600;
-    padding: 0 8px; flex: 0 0 auto;
+  .read-more-btn .icon {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.3s;
+    stroke-width: 2;
   }
-  .wf-note {
-    font-size: 12px; color: var(--ink-2); font-style: italic;
-    margin: 6px 0 0; padding: 8px 12px;
-    border-left: 3px solid var(--ink-3); background: var(--bg-2);
+  .read-more-btn[aria-expanded="true"] .icon {
+    transform: rotate(180deg);
   }
 
-  /* Vision block */
+  .vision-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+    opacity: 0;
+    margin-top: 0;
+  }
+  .vision-panel.open {
+    max-height: 800px;
+    opacity: 1;
+    margin-top: 16px;
+  }
   .vision {
-    border-left: 4px solid var(--ink);
-    padding: 12px 16px 14px;
-    background: var(--bg-2);
-    margin: 10px 0 20px;
+    padding: 22px 26px;
+    background: var(--peach-wash);
+    border-left: 3px solid var(--peach);
+    border-radius: var(--radius);
   }
-  .vision p { margin: 0; font-size: 15px; }
+  .vision p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink);
+  }
 
-  /* Planned reach block */
-  .scale {
+  /* ---------- Insight callout (site-specific accent colours) ---------- */
+  .insight {
+    border-radius: var(--radius-lg);
+    padding: 22px 26px;
+    margin: 28px 0 4px;
+    background: var(--white);
+    border: 1px solid var(--ink);
+  }
+  .site.site-enugu .insight { border-color: var(--ink); background: var(--white); }
+  .site.site-adamawa .insight { border-color: var(--indigo); background: var(--lavender-wash); }
+  .insight-line {
+    font-size: 19px;
+    line-height: 1.45;
+    font-weight: 500;
+    color: var(--ink);
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+  }
+  .insight-impl {
+    font-size: 14px;
+    color: var(--ink-2);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* ---------- Bar chart ---------- */
+  .barchart { margin: 18px 0 8px; }
+  .bar-row {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 120px 1fr 80px;
     gap: 16px;
     align-items: center;
-    border: 1px solid var(--ink);
-    padding: 14px 18px;
-    margin: 10px 0 14px;
+    margin-bottom: 12px;
+    font-size: 13px;
   }
-  .scale-goal {
+  .bar-label {
+    font-family: var(--mono);
+    color: var(--ink-2);
+    font-weight: 500;
     font-size: 11px;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--ink-3);
+    line-height: 1.3;
+  }
+  .bar-track {
+    display: flex;
+    height: 34px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .bar-track.target { border: 1px dashed var(--peach); }
+  .seg {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11.5px; font-weight: 600; white-space: nowrap;
+    font-family: var(--mono);
+  }
+  .seg-1 { background: var(--peach); color: var(--white); }
+  .seg-2 { background: var(--ai-black); color: var(--white); }
+  .seg-3 { background: var(--lavender-bright); color: var(--ink); }
+  .bar-total {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-2);
+    font-weight: 500;
+  }
+  .legend {
+    margin: 14px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12.5px; color: var(--ink-2);
+  }
+  .swatch {
+    display: inline-block;
+    width: 12px; height: 12px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .chart-note {
+    font-size: 12.5px; color: var(--ink-3);
+    margin: 14px 0 0;
+    line-height: 1.55;
+    font-style: italic;
+  }
+
+  /* ---------- EARLY SIGNALS — unified peach cards with icons ---------- */
+  .signals-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 12px 0 0;
+  }
+  .signals-grid.two-col { grid-template-columns: repeat(2, 1fr); }
+  .signal-card {
+    padding: 22px 22px 24px;
+    border-radius: var(--radius-lg);
+    background: var(--peach-wash);
+    border: 1px solid var(--peach);
+    min-height: 150px;
+    display: flex;
+    align-items: stretch;
+  }
+  .signal-card .sc-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+  }
+  .sc-icon {
+    width: 28px;
+    height: 28px;
+    color: var(--peach);
+    flex-shrink: 0;
+  }
+  .signal-card .sc-text {
+    font-family: var(--sans);
+    font-size: 15.5px;
+    line-height: 1.45;
+    font-weight: 700;
+    color: var(--indigo);
+    letter-spacing: -0.005em;
+    margin: 0;
+  }
+  .sc-stat {
+    color: var(--peach);
+    font-weight: 700;
+  }
+
+  /* ---------- Adamawa note ---------- */
+  .note {
+    background: var(--lavender-wash);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    margin: 20px 0 0;
+    font-size: 13.5px;
+    color: var(--ink-2);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .note .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--indigo);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  /* ---------- Workflow ---------- */
+  .workflow {
+    display: flex; flex-wrap: nowrap;
+    align-items: stretch;
+    margin: 18px 0 8px;
+    gap: 0;
+  }
+  .wf-step {
+    flex: 1 1 0; min-width: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: var(--white);
+  }
+  .wf-icon { width: 32px; height: 32px; color: var(--peach); }
+  .wf-icon svg { width: 100%; height: 100%; }
+  .wf-label {
     font-weight: 600;
-    margin: 0 0 2px;
+    font-size: 13.5px;
+    line-height: 1.35;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .wf-desc {
+    font-size: 12.5px;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+  .wf-arrow {
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 10px;
+    flex: 0 0 auto;
+    color: var(--ink-3);
+  }
+  .wf-arrow svg { width: 18px; height: 18px; }
+
+  /* ---------- Feedback (Kitengela) with illustration ---------- */
+  .feedback-block {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 24px;
+    margin: 28px 0 4px;
+    padding: 26px 28px;
+    background: var(--yellow-wash);
+    border-radius: var(--radius-lg);
+    border-left: 3px solid var(--yellow);
+    align-items: center;
+  }
+  .feedback-illustration {
+    width: 110px; height: 110px;
+    flex-shrink: 0;
+  }
+  .feedback-illustration svg {
+    width: 100%; height: 100%;
+  }
+  .feedback-label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8a6600;
+    font-weight: 500;
+    margin: 0 0 10px;
+  }
+  .feedback-text p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  /* ---------- Planned reach (lavender background, label as pill) ---------- */
+  .scale-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 24px;
+    margin: 40px 0 0;
+    background: var(--lavender-bright);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--indigo);
+  }
+  .scale-label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--white);
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 5px 12px;
+    background: var(--indigo);
+    border-radius: 20px;
   }
   .scale-val {
-    font-size: 24px;
+    font-family: var(--sans);
+    font-size: 19px;
     font-weight: 600;
-    line-height: 1.1;
+    color: var(--indigo);
+    letter-spacing: -0.01em;
     white-space: nowrap;
   }
   .scale-text {
-    font-size: 14px;
+    font-size: 13.5px;
     color: var(--ink-2);
-    line-height: 1.4;
+    line-height: 1.5;
+    flex: 1;
   }
-  .scale-text strong { color: var(--ink); }
+  .scale-divider {
+    width: 1px;
+    align-self: stretch;
+    background: var(--indigo);
+    opacity: 0.25;
+  }
 
-  .review-bar { position: sticky; top: 0; background: var(--ink); color: #fff; padding: 10px 16px; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; z-index: 10; margin: -48px -32px 32px; }
+  /* ---------- Footer ---------- */
+  .footer {
+    margin-top: 100px;
+    padding: 48px 0 32px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .footer-logo {
+    max-width: 160px;
+    height: auto;
+    opacity: 0.92;
+  }
 
-  @media (max-width: 640px) {
-    .wrap { padding: 24px 16px 80px; }
-    .flow-nav { grid-template-columns: 40px 1fr; }
-    .flow-card-wrap { padding-left: 16px; }
-    .flow-card-wrap::before { left: -28px; width: 40px; }
-    .flow-card-wrap::after { left: -20px; }
-    .flow-start, .flow-end-label { font-size: 10px; }
-    .kv { grid-template-columns: 1fr; }
-    .review-bar { margin: -24px -16px 24px; }
-    table { font-size: 13px; }
-    th, td { padding: 8px; }
-    .bar-row { grid-template-columns: 1fr; gap: 6px; }
-    .metric-line { grid-template-columns: 1fr; gap: 4px; }
+  /* ---------- Responsive ---------- */
+  @media (max-width: 820px) {
+    .wrap { padding: 0 20px 80px; }
+    .hero-wrap .wrap-inner { padding: 0 20px; }
+    .topbar { padding: 16px 0; }
+    .logo-top { height: 36px; }
+    h1 { font-size: 32px; }
+    h2 { font-size: 24px; }
+    .hero { padding: 20px 0 0; }
+    .flow-diagram { padding: 56px 22px 28px 56px; }
+    .flow-vision-badge { top: 22px; left: 22px; }
+    .flow-spine { left: -22px; }
+    .flow-card-wrap::before { left: -22px; width: 22px; }
+    .hero-lead { font-size: 15px; margin: 0 0 32px; }
+    .nav-card { padding: 18px 20px; }
+    .site-hero { grid-template-columns: 1fr; min-height: auto; }
+    .site-hero-image { min-height: 200px; aspect-ratio: 16 / 10; }
     .workflow { flex-direction: column; }
-    .wf-arrow { transform: rotate(90deg); padding: 4px 0; }
-    .scale { grid-template-columns: 1fr; gap: 6px; }
-    .site-hero { grid-template-columns: 1fr; }
-    .site-hero-image { border-right: none; border-bottom: 1px dashed var(--ink-3); min-height: 160px; padding: 30px 20px; }
+    .wf-arrow { padding: 6px 0; transform: rotate(90deg); }
+    .bar-row { grid-template-columns: 1fr; gap: 8px; }
+    .signals-grid,
+    .signals-grid.two-col { grid-template-columns: 1fr; }
+    .site-hero-info dl { grid-template-columns: 1fr; gap: 4px; }
+    .site-hero-info dt { padding-top: 8px; }
+    .feedback-block { grid-template-columns: 80px 1fr; gap: 16px; padding: 20px 22px; }
+    .feedback-illustration { width: 80px; height: 80px; }
+    .scale-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .scale-divider { display: none; }
   }
 </style>
 </head>
+
 <body>
+
+<!-- Icon library -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-conversation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 7a3 3 0 0 1 3-3h7a3 3 0 0 1 3 3v4a3 3 0 0 1-3 3h-3l-4 3v-3H7a3 3 0 0 1-3-3V7z"/>
+      <path d="M9 17v1a3 3 0 0 0 3 3h3l4 3v-3h0a3 3 0 0 0 3-3v-4a3 3 0 0 0-3-3"/>
+    </symbol>
+    <symbol id="i-listen-prompts" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 12v0M6 9v6M9 6v12M12 9v6"/>
+      <path d="M16 7h5v5"/>
+      <path d="m16 16 5-5"/>
+    </symbol>
+    <symbol id="i-sync" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 12a8 8 0 0 1 13.5-5.8L20 8"/>
+      <path d="M20 4v4h-4"/>
+      <path d="M20 12a8 8 0 0 1-13.5 5.8L4 16"/>
+      <path d="M4 20v-4h4"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="m8 12 3 3 5-6"/>
+    </symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/>
+    </symbol>
+    <symbol id="i-language" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M3 12h18"/>
+      <path d="M12 3a14 14 0 0 1 4 9 14 14 0 0 1-4 9 14 14 0 0 1-4-9 14 14 0 0 1 4-9z"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 7v5l3 2"/>
+    </symbol>
+    <symbol id="i-return" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 12a9 9 0 1 0 3-6.7L3 8"/>
+      <path d="M3 3v5h5"/>
+    </symbol>
+    <symbol id="i-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="8" height="10" rx="1"/>
+      <rect x="13" y="3" width="8" height="6" rx="1"/>
+      <rect x="3" y="15" width="8" height="6" rx="1"/>
+      <rect x="13" y="11" width="8" height="10" rx="1"/>
+    </symbol>
+    <symbol id="i-tablet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="5" y="2" width="14" height="20" rx="2"/>
+      <path d="M11 18h2"/>
+    </symbol>
+    <symbol id="i-notes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+      <path d="M14 2v6h6"/>
+      <path d="M8 13h8M8 17h5"/>
+    </symbol>
+    <symbol id="i-connected" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="5" cy="12" r="2"/>
+      <circle cx="19" cy="12" r="2"/>
+      <circle cx="12" cy="5" r="2"/>
+      <circle cx="12" cy="19" r="2"/>
+      <path d="M7 12h10M12 7v10"/>
+    </symbol>
+    <symbol id="i-protocol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4" y="3" width="16" height="18" rx="2"/>
+      <path d="m8 10 2 2 4-4"/>
+      <path d="M8 16h8"/>
+    </symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14M13 6l6 6-6 6"/>
+    </symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 4.5 L6 7.5 L9 4.5"/>
+    </symbol>
+
+    <!-- Signal-card icons: Enugu -->
+    <symbol id="i-sig-timesaved" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="14" cy="14" r="10"/>
+      <path d="M14 8v6l4 2"/>
+      <path d="m20 20 3 3" stroke-width="2"/>
+    </symbol>
+    <symbol id="i-sig-facetime" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="10" cy="10" r="3.5"/>
+      <circle cx="19" cy="10" r="3.5"/>
+      <path d="M3 24c0-4 3-7 7-7s7 3 7 7"/>
+      <path d="M13 24c0-4 3-7 7-7s5 2 5 5"/>
+    </symbol>
+    <symbol id="i-sig-report" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="5" y="4" width="18" height="20" rx="2"/>
+      <path d="M9 10h10M9 14h10M9 18h6"/>
+      <circle cx="21" cy="21" r="3" fill="currentColor" stroke="none"/>
+      <path d="m19.5 21 1.2 1.2L22.5 20" stroke="#fff4f1" stroke-width="1.4"/>
+    </symbol>
+
+    <!-- Signal-card icons: Kitengela -->
+    <symbol id="i-sig-digitise" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4" y="6" width="20" height="14" rx="2"/>
+      <path d="M9 24h10M14 20v4"/>
+      <path d="m10 12 2 2 4-4" stroke-width="2"/>
+    </symbol>
+    <symbol id="i-sig-protocol" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 3 5 7v6c0 6 4 10 9 12 5-2 9-6 9-12V7l-9-4z"/>
+      <path d="m10 13 3 3 5-6" stroke-width="2"/>
+    </symbol>
+    <symbol id="i-sig-5x" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="14" cy="14" r="10"/>
+      <path d="M10 10h4l-1 4h2a2 2 0 1 1-2 2" />
+      <path d="M18 10 20 18M20 10l-2 8" stroke-width="1.5"/>
+    </symbol>
+
+    <!-- Signal-card icons: Adamawa -->
+    <symbol id="i-sig-trust" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 3 5 7v6c0 6 4 10 9 12 5-2 9-6 9-12V7l-9-4z"/>
+      <path d="M14 10v4l3 2" />
+    </symbol>
+    <symbol id="i-sig-shield" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 4c-4 0-7 2-7 2v7c0 6 4 9 7 11 3-2 7-5 7-11V6s-3-2-7-2z"/>
+      <circle cx="14" cy="13" r="2"/>
+      <path d="M14 15v3"/>
+    </symbol>
+    <symbol id="i-sig-users" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="10" r="3.5"/>
+      <path d="M4 23c0-3.5 3-6.5 7-6.5s7 3 7 6.5"/>
+      <circle cx="20" cy="8" r="2.5"/>
+      <path d="M18 17c2-1 6 0 6 4"/>
+    </symbol>
+    <symbol id="illustration-feedback" viewBox="0 0 110 110">
+      <circle cx="55" cy="55" r="52" fill="#fff8e8"/>
+      <path d="M20 18 h50 a8 8 0 0 1 8 8 v26 a8 8 0 0 1 -8 8 h-30 l-12 10 v-10 h-8 a8 8 0 0 1 -8 -8 v-26 a8 8 0 0 1 8 -8 z"
+            fill="#ffffff" stroke="#0f2332" stroke-width="2" stroke-linejoin="round"/>
+      <line x1="24" y1="30" x2="68" y2="30" stroke="#ff7869" stroke-width="2.2" stroke-linecap="round"/>
+      <line x1="24" y1="38" x2="60" y2="38" stroke="#ff7869" stroke-width="2.2" stroke-linecap="round"/>
+      <line x1="24" y1="46" x2="52" y2="46" stroke="#CDCCFA" stroke-width="2.2" stroke-linecap="round"/>
+      <circle cx="78" cy="78" r="9" fill="#ffffff" stroke="#0f2332" stroke-width="2"/>
+      <path d="M62 104 c0 -10 7 -17 16 -17 c9 0 16 7 16 17" fill="#ffffff" stroke="#0f2332" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M78 87 v17" stroke="#ff7869" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M71 92 c-2 3 -2 7 1 9" fill="none" stroke="#0f2332" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="72" cy="101" r="1.8" fill="#ff7869"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- HERO WRAPPER (with gradient background image) -->
+<div class="hero-wrap">
+  <div class="wrap-inner">
+    <div class="topbar">
+      <img src="images/aira-qure-logo.svg" alt="Aira by qure.ai" class="logo-top">
+      <div class="tag-status">Highlights From The Field</div>
+    </div>
+
+    <section class="hero">
+      <p class="eyebrow">Signals From The Field</p>
+      <h1>Building the path to decentralised and <span class="h1-accent">integrated HIV care</span></h1>
+      <p class="hero-lead">Imagine a care system where health workers are freed from admin work to focus fully on the patient in front of them. Integrated pathways run from day one, without the overhead of upskilling and supervision. HIV services move closer to where patients live — decentralised to PHCs and the community without compromise in quality. Automated, language-matched outreach lifts the tracking burden off small teams and keeps adherence on course. Every clinical decision and every patient conversation is personalised to context. And behind it all, data flows in real time — timely, accurate, and complete enough for full program oversight.</p>
+
+      <!-- Flow diagram: vision badge at top, spine down, cards branching right -->
+      <div class="flow-diagram">
+        <span class="flow-vision-badge">One vision</span>
+
+        <p class="flow-caption">Three stories</p>
+
+        <div class="flow-body">
+          <div class="flow-spine"></div>
+          <div class="flow-cards-v">
+            <div class="flow-card-wrap">
+              <a class="nav-card" href="#s-enugu">
+                <p class="nav-story"><span class="highlight">Restoring clinical face-time</span> with point-of-care digitisation that integrates with the national EMR.</p>
+                <div class="nav-meta">
+                  <p class="nav-site">Enugu, Nigeria 🇳🇬</p>
+                  <p class="nav-partner">Caritas Health</p>
+                </div>
+              </a>
+            </div>
+            <div class="flow-card-wrap">
+              <a class="nav-card" href="#s-adamawa">
+                <p class="nav-story"><span class="highlight">Scaling retention work</span> through automated multilingual patient outreach — without scaling capacity.</p>
+                <div class="nav-meta">
+                  <p class="nav-site">Adamawa, Nigeria 🇳🇬</p>
+                  <p class="nav-partner">Adamawa State Government &amp; AHNI</p>
+                </div>
+              </a>
+            </div>
+            <div class="flow-card-wrap">
+              <a class="nav-card" href="#s-nairobi">
+                <p class="nav-story"><span class="highlight">Mobilising continuity and consistency</span> of care with ambient digital care at the point of outreach.</p>
+                <div class="nav-meta">
+                  <p class="nav-site">Kitengela, Nairobi 🇰🇪</p>
+                  <p class="nav-partner">Kenya Red Cross Society</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
 <div class="wrap">
 
-  <div class="review-bar">● Review Draft v6 — Content only, design pending</div>
-
-  <!-- SECTION 1 — INTRO + NAVIGATION -->
-  <section id="intro">
-    <h1>Building a path to decentralised and integrated HIV care</h1>
-
-    <div class="vision-intro">
-      <p class="lead">Imagine a care system where health workers are freed from admin work to focus fully on the patient in front of them. Integrated pathways run from day one, without the overhead of upskilling and supervision. HIV services move closer to where patients live — decentralised to PHCs and the community without compromise in quality. Automated, language-matched outreach lifts the tracking burden off small teams and keeps adherence on course. Every clinical decision and every patient conversation is personalised to context. And behind it all, data flows in real time — timely, accurate, and complete enough for full program oversight.</p>
-    </div>
-
-    <div class="flow-nav">
-      <div class="flow-spine">
-        <div class="flow-end-label">One vision</div>
-        <div class="flow-line"></div>
-        <div class="flow-start">Three stories</div>
-      </div>
-      <div class="flow-cards">
-        <div class="flow-card-wrap">
-          <a class="nav-card" href="#s-enugu">
-            <div class="nav-header">
-              <p class="nav-site">Enugu</p>
-              <p class="nav-country">Nigeria 🇳🇬 · Caritas Health</p>
-            </div>
-            <p class="nav-story">Point-of-care digitisation that integrates with the national EMR — restoring clinical face-time and eliminating paper-to-EMR double handling at ART clinics and the PHC.</p>
-            <p class="nav-link">Open site detail →</p>
-          </a>
-        </div>
-        <div class="flow-card-wrap">
-          <a class="nav-card" href="#s-adamawa">
-            <div class="nav-header">
-              <p class="nav-site">Adamawa</p>
-              <p class="nav-country">Nigeria 🇳🇬 · Adamawa State + AHNI</p>
-            </div>
-            <p class="nav-story">Automated multilingual patient outreach that scales retention work without scaling capacity — and gains patient and provider trust in the process.</p>
-            <p class="nav-link">Open site detail →</p>
-          </a>
-        </div>
-        <div class="flow-card-wrap">
-          <a class="nav-card" href="#s-nairobi">
-            <div class="nav-header">
-              <p class="nav-site">Nairobi</p>
-              <p class="nav-country">Kenya 🇰🇪 · Kenya Red Cross Society</p>
-            </div>
-            <p class="nav-story">Ambient digital care at the point of outreach — bringing continuity, quality, and consistency to decentralised services for key populations.</p>
-            <p class="nav-link">Open site detail →</p>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION — ENUGU -->
-  <section id="s-enugu">
-    <p class="sec-eyebrow">Site detail</p>
-    <h2>Enugu, Nigeria</h2>
+  <!-- ============ ENUGU ============ -->
+  <section class="site site-enugu" id="s-enugu">
+    <p class="site-eyebrow">Site 01 · Enugu, Nigeria 🇳🇬</p>
+    <h2>Restoring clinical face-time with point-of-care digitisation</h2>
 
     <h3>Overview</h3>
     <div class="site-hero">
-      <div class="site-hero-image">[IMAGE / VIDEO — Aira Co-Consult at ART centre or PHC team]</div>
+      <div class="site-hero-image enugu" role="img" aria-label="Clinician using Aira on a tablet while counselling a client at the ART centre"></div>
       <div class="site-hero-info">
         <dl>
+          <dt>Location</dt><dd>Enugu, Nigeria</dd>
           <dt>Sites</dt><dd>Two ART centres and one primary health centre</dd>
           <dt>Partner</dt><dd>Caritas Health</dd>
           <dt>Module</dt><dd>Aira Co-Consult + Aira Reach</dd>
@@ -421,19 +985,49 @@
       </div>
     </div>
 
-    <h3>Vision</h3>
-    <div class="vision">
-      <p>Ambient point-of-care digitisation can eliminate the documentation tax on every clinical encounter — restoring face-time with patients, erasing the paper-to-EMR double handling that drains data operator days, and making high-quality differentiated service delivery possible even at the primary health centre level, where four staff carry HIV services alongside general primary care with limited specialist oversight.</p>
+    <h3>Aira in action</h3>
+    <div class="workflow">
+      <div class="wf-step">
+        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-conversation"/></svg></div>
+        <div class="wf-label">Provider and client in conversation</div>
+        <div class="wf-desc">The consultation runs as it always has.</div>
+      </div>
+      <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+      <div class="wf-step">
+        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-listen-prompts"/></svg></div>
+        <div class="wf-label">Aira listens, structures and nudges</div>
+        <div class="wf-desc">Notes captured ambiently; protocol prompts surface during the consult.</div>
+      </div>
+      <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+      <div class="wf-step">
+        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-sync"/></svg></div>
+        <div class="wf-label">Direct sync to national records</div>
+        <div class="wf-desc">No paper form, no evening data entry backlog.</div>
+      </div>
+      <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+      <div class="wf-step">
+        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-check"/></svg></div>
+        <div class="wf-label">Clinician moves on</div>
+        <div class="wf-desc">Face-time restored; data operator load reduced.</div>
+      </div>
     </div>
 
-    <div class="insight">
-      <p class="insight-label">What we're seeing</p>
+    <button class="read-more-btn" type="button" aria-expanded="false" data-target="vision-enugu">
+      Read more
+      <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+    </button>
+    <div class="vision-panel" id="vision-enugu">
+      <div class="vision">
+        <p>Ambient point-of-care digitisation can eliminate the documentation tax on every clinical encounter — restoring face-time with patients, erasing the paper-to-EMR double handling that drains data operator days, and making high-quality differentiated service delivery possible even at the primary health centre level, where four staff carry HIV services alongside general primary care with limited specialist oversight.</p>
+      </div>
+    </div>
+
+    <div class="insight" style="margin-top:28px;">
       <p class="insight-line">For every minute a provider spends talking to the client, the client spends over a minute watching them write.</p>
       <p class="insight-impl">Documentation is the single biggest threat to counselling quality at the point of care.</p>
     </div>
 
-    <!-- BAR CHART -->
-    <div class="barchart">
+    <div class="barchart" style="margin-top: 28px;">
       <div class="bar-row">
         <div class="bar-label">Today<br>(baseline)</div>
         <div class="bar-track">
@@ -454,67 +1048,54 @@
       </div>
     </div>
     <div class="legend">
-      <div class="legend-item"><span class="swatch seg-1"></span>Direct clinical engagement with the client</div>
-      <div class="legend-item"><span class="swatch seg-2"></span>Client present but idle (watching provider document)</div>
-      <div class="legend-item"><span class="swatch seg-3"></span>Documentation before or after the encounter</div>
+      <div class="legend-item"><span class="swatch" style="background: var(--peach);"></span>Direct clinical engagement</div>
+      <div class="legend-item"><span class="swatch" style="background: var(--ai-black);"></span>Client idle — watching provider document</div>
+      <div class="legend-item"><span class="swatch" style="background: var(--lavender-bright);"></span>Documentation before or after the encounter</div>
     </div>
     <p class="chart-note">Target: direct clinical engagement becomes the dominant use of every minute with the client; documentation before or after drops below 5% through direct sync to the national records system. Measurement of actual intervention impact is underway.</p>
 
-    <h3>Early signals <span class="tag tag-pending">🟡 Measurement in progress</span></h3>
-    <ul>
-      <li>Documentation time spent after each consultation eliminated.</li>
-      <li>Increased proportion of face-time and clinical attention per client encounter.</li>
-      <li>On-time, complete daily reporting of HIV testing services, including integrated screening for negative outcomes.</li>
-    </ul>
-
-    <h3>Aira in action</h3>
-    <div class="workflow">
-      <div class="wf-step">
-        <div class="wf-icon">🗨️</div>
-        <div class="wf-label">Provider and client in conversation</div>
-        <div class="wf-desc">The consultation runs as it always has.</div>
+    <h3 class="h3-accent">Early signals</h3>
+    <div class="signals-grid">
+      <div class="signal-card">
+        <div class="sc-body">
+          <svg class="sc-icon" aria-hidden="true"><use href="#i-sig-timesaved"/></svg>
+          <p class="sc-text">Documentation time spent after each consultation eliminated.</p>
+        </div>
       </div>
-      <div class="wf-arrow">→</div>
-      <div class="wf-step">
-        <div class="wf-icon">👂</div>
-        <div class="wf-label">Aira listens and structures</div>
-        <div class="wf-desc">Notes are captured ambiently in real time.</div>
+      <div class="signal-card">
+        <div class="sc-body">
+          <svg class="sc-icon" aria-hidden="true"><use href="#i-sig-facetime"/></svg>
+          <p class="sc-text">Increased proportion of face-time and clinical attention per client encounter.</p>
+        </div>
       </div>
-      <div class="wf-arrow">→</div>
-      <div class="wf-step">
-        <div class="wf-icon">🔄</div>
-        <div class="wf-label">Direct sync to national records</div>
-        <div class="wf-desc">No paper form, no evening data entry backlog.</div>
-      </div>
-      <div class="wf-arrow">→</div>
-      <div class="wf-step">
-        <div class="wf-icon">✓</div>
-        <div class="wf-label">Clinician moves on</div>
-        <div class="wf-desc">Face-time restored; data operator load reduced.</div>
+      <div class="signal-card">
+        <div class="sc-body">
+          <svg class="sc-icon" aria-hidden="true"><use href="#i-sig-report"/></svg>
+          <p class="sc-text">On-time, complete daily reporting of HIV testing services, including integrated screening for negative outcomes.</p>
+        </div>
       </div>
     </div>
-    <p class="wf-note">At the primary health centre, Aira also surfaces protocol prompts during the consult — reinforcing quality without adding a tool to learn.</p>
 
-    <h3>Planned reach</h3>
-    <div class="scale">
-      <div>
-        <p class="scale-goal">Goal</p>
-        <p class="scale-val">500+ / month</p>
-      </div>
-      <div class="scale-text"><strong>Covering over 500 monthly HIV testing and ART refill encounters</strong> across the two ART hubs and the primary health centre — the full repeating interaction load of the sites currently in the pilot.</div>
+    <div class="scale-row">
+      <span class="scale-label">Planned reach</span>
+      <div class="scale-divider"></div>
+      <span class="scale-val">500+ / month</span>
+      <div class="scale-divider"></div>
+      <p class="scale-text">HIV testing and ART refill encounters across two ART hubs and the primary health centre.</p>
     </div>
   </section>
 
-  <!-- SECTION — ADAMAWA -->
-  <section id="s-adamawa">
-    <p class="sec-eyebrow">Site detail</p>
-    <h2>Adamawa, Nigeria</h2>
+  <!-- ============ ADAMAWA ============ -->
+  <section class="site site-adamawa" id="s-adamawa">
+    <p class="site-eyebrow">Site 02 · Adamawa, Nigeria 🇳🇬</p>
+    <h2>Scaling retention through automated patient outreach</h2>
 
     <h3>Overview</h3>
     <div class="site-hero">
-      <div class="site-hero-image">[IMAGE / VIDEO — Case manager with Aira Reach dashboard or sample call audio]</div>
+      <div class="site-hero-image adamawa" role="img" aria-label="A patient on an automated Aira Reach call during her daily routine"></div>
       <div class="site-hero-info">
         <dl>
+          <dt>Location</dt><dd>Adamawa, Nigeria</dd>
           <dt>Site</dt><dd>Modibbo Adama University Teaching Hospital ART centre</dd>
           <dt>Partner</dt><dd>Adamawa State Government and AHNI</dd>
           <dt>Module</dt><dd>Aira Reach</dd>
@@ -523,92 +1104,103 @@
       </div>
     </div>
 
-    <h3>Vision</h3>
-    <div class="vision">
-      <p>A small team of case managers at Modibbo Adama University Teaching Hospital tracks over two thousand people living with HIV — routine reminder calls eating into the time that should go to home visits, complex cases, and adherence counselling. Aira handles reminders and missed-appointment calls autonomously in the patient's own language, with a voice modelled on their case manager — flagging only uncertain and unreachable cases for close human follow-up, and freeing capacity for targeted, personalised adherence support.</p>
+    <h3>Aira in action</h3>
+    <div class="workflow">
+      <div class="wf-step">
+        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-phone"/></svg></div>
+        <div class="wf-label">Call seven days ahead</div>
+        <div class="wf-desc">Hausa-first, modelled on a case manager's voice.</div>
+      </div>
+      <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+      <div class="wf-step">
+        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-language"/></svg></div>
+        <div class="wf-label">Natural language switching</div>
+        <div class="wf-desc">Hausa or English, as the patient prefers.</div>
+      </div>
+      <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+      <div class="wf-step">
+        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-clock"/></svg></div>
+        <div class="wf-label">Day-of reminder</div>
+        <div class="wf-desc">A final prompt, or a reschedule flag.</div>
+      </div>
+      <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+      <div class="wf-step">
+        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-return"/></svg></div>
+        <div class="wf-label">Follow-up for defaulters</div>
+        <div class="wf-desc">Rescheduling and follow-up on missed appointments.</div>
+      </div>
+      <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+      <div class="wf-step">
+        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-dashboard"/></svg></div>
+        <div class="wf-label">Dashboard for case managers</div>
+        <div class="wf-desc">Every call logged; only clients needing a human surface on the short list.</div>
+      </div>
     </div>
 
-    <div class="insight">
-      <p class="insight-label">What we're seeing</p>
+    <button class="read-more-btn" type="button" aria-expanded="false" data-target="vision-adamawa">
+      Read more
+      <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+    </button>
+    <div class="vision-panel" id="vision-adamawa">
+      <div class="vision">
+        <p>A small team of case managers at Modibbo Adama University Teaching Hospital tracks over two thousand people living with HIV — routine reminder calls eating into the time that should go to home visits, complex cases, and adherence counselling. Aira handles reminders and missed-appointment calls autonomously in the patient's own language, with a voice modelled on their case manager — flagging only uncertain and unreachable cases for close human follow-up, and freeing capacity for targeted, personalised adherence support.</p>
+      </div>
+    </div>
+
+    <div class="insight" style="margin-top:28px;">
       <p class="insight-line">Half of a case manager's productive time is spent attempting phone calls that are never answered.</p>
       <p class="insight-impl">Automating routine reminder outreach is not a nice-to-have — it is the single largest capacity unlock available today.</p>
     </div>
 
-    <h3>Early signals <span class="tag">✓ Live data</span></h3>
-    <p>Early signals are already answering the hardest question for any automated outreach program: <em>will patients actually engage?</em></p>
+    <h3 class="h3-accent">Early signals</h3>
+    <p style="margin: 0 0 16px; color: var(--ink-2); font-size: 15px;">Early signals are already answering the hardest question for any automated outreach program: <em>will patients actually engage?</em></p>
 
-    <div class="metric-line">
-      <div class="metric-val">70%</div>
-      <div class="metric-text"><strong>Conversation success rate between AI and clients.</strong> Seven in ten patients engaged meaningfully with an AI caller speaking their language — in a setting where cold automated calls are routinely ignored.</div>
-    </div>
-    <div class="metric-line">
-      <div class="metric-val">75% / 67%</div>
-      <div class="metric-text"><strong>Rated the caller positively on tone</strong> — professional or respectful (75%), warm or friendly (67%). Patients cited the greeting, respectful tone, and convenience check as specific positives.</div>
-    </div>
-    <div class="metric-line">
-      <div class="metric-val">90%</div>
-      <div class="metric-text"><strong>Would trust reminders like these from their clinic</strong> — 60% at a high level of trust. Acceptance, historically the biggest barrier to automated outreach, is clearly answered.</div>
-    </div>
-    <div class="metric-line">
-      <div class="metric-val">20%</div>
-      <div class="metric-text"><strong>Small group of patients still preferred case-manager calls.</strong> When offered the choice between automated calls, human calls, SMS, WhatsApp, or none — only one in five chose the status quo.</div>
-    </div>
-
-    <p class="note">🟡 Impact on appointment attendance and interruption in treatment: measurement in progress.</p>
-
-    <h3>Aira in action</h3>
-    <div class="workflow">
-      <div class="wf-step">
-        <div class="wf-icon">📞</div>
-        <div class="wf-label">Aira calls seven days ahead</div>
-        <div class="wf-desc">Hausa-first, modelled on a case manager's voice.</div>
+    <div class="signals-grid">
+      <div class="signal-card">
+        <div class="sc-body">
+          <svg class="sc-icon" aria-hidden="true"><use href="#i-sig-trust"/></svg>
+          <p class="sc-text"><span class="sc-stat">70%</span> conversation success rate — seven in ten patients engaged meaningfully with an AI caller speaking their language.</p>
+        </div>
       </div>
-      <div class="wf-arrow">→</div>
-      <div class="wf-step">
-        <div class="wf-icon">🗣️</div>
-        <div class="wf-label">Natural language switching</div>
-        <div class="wf-desc">Hausa or English, as the patient prefers.</div>
+      <div class="signal-card">
+        <div class="sc-body">
+          <svg class="sc-icon" aria-hidden="true"><use href="#i-sig-shield"/></svg>
+          <p class="sc-text"><span class="sc-stat">90%</span> would trust reminders like these from their clinic — 60% at a high level of trust.</p>
+        </div>
       </div>
-      <div class="wf-arrow">→</div>
-      <div class="wf-step">
-        <div class="wf-icon">⏰</div>
-        <div class="wf-label">Reminder on appointment day</div>
-        <div class="wf-desc">A final prompt, or a reschedule flag.</div>
-      </div>
-      <div class="wf-arrow">→</div>
-      <div class="wf-step">
-        <div class="wf-icon">🔁</div>
-        <div class="wf-label">Follow-up calls to defaulters</div>
-        <div class="wf-desc">Rescheduling and follow-up on missed appointments.</div>
-      </div>
-      <div class="wf-arrow">→</div>
-      <div class="wf-step">
-        <div class="wf-icon">📊</div>
-        <div class="wf-label">Dashboard for case managers</div>
-        <div class="wf-desc">Every conversation logged; only clients needing a human surface on the short list.</div>
+      <div class="signal-card">
+        <div class="sc-body">
+          <svg class="sc-icon" aria-hidden="true"><use href="#i-sig-users"/></svg>
+          <p class="sc-text">Only <span class="sc-stat">20%</span> of patients still preferred case-manager calls when offered the choice between automated calls, human calls, SMS, WhatsApp, or none.</p>
+        </div>
       </div>
     </div>
 
-    <h3>Planned reach</h3>
-    <div class="scale">
-      <div>
-        <p class="scale-goal">Goal</p>
-        <p class="scale-val">2,000+ patients</p>
-      </div>
-      <div class="scale-text"><strong>Covering on-time appointment reminders and adherence support for over 2,000 people living with HIV</strong> managed by the case manager team at Modibbo Adama University Teaching Hospital — the full cohort the facility is accountable for.</div>
+    <div class="note">
+      <span class="dot"></span>
+      <div>Impact on appointment attendance and interruption in treatment: measurement in progress.</div>
+    </div>
+
+    <div class="scale-row">
+      <span class="scale-label">Planned reach</span>
+      <div class="scale-divider"></div>
+      <span class="scale-val">2,000+ patients</span>
+      <div class="scale-divider"></div>
+      <p class="scale-text">On-time appointment reminders and adherence support — the full MAUTH cohort.</p>
     </div>
   </section>
 
-  <!-- SECTION — NAIROBI -->
-  <section id="s-nairobi">
-    <p class="sec-eyebrow">Site detail</p>
-    <h2>Nairobi, Kenya</h2>
+  <!-- ============ NAIROBI ============ -->
+  <section class="site site-nairobi" id="s-nairobi">
+    <p class="site-eyebrow">Site 03 · Kitengela, Nairobi 🇰🇪</p>
+    <h2>Mobilising continuity and consistency of care in outreach services</h2>
 
     <h3>Overview</h3>
     <div class="site-hero">
-      <div class="site-hero-image">[IMAGE / VIDEO — Tablet at outreach camp or counsellor-client interaction]</div>
+      <div class="site-hero-image kitengela" role="img" aria-label="A Kenya Red Cross Society counsellor using a tablet during an outreach consultation"></div>
       <div class="site-hero-info">
         <dl>
+          <dt>Location</dt><dd>Kitengela, Nairobi, Kenya</dd>
           <dt>Site</dt><dd>Kitengela Drop-in Centre and quarterly outreach camps</dd>
           <dt>Partner</dt><dd>Kenya Red Cross Society</dd>
           <dt>Module</dt><dd>Aira Co-Consult</dd>
@@ -617,70 +1209,103 @@
       </div>
     </div>
 
-    <h3>Vision</h3>
-    <div class="vision">
-      <p>At Kitengela outreach camps, paper forms are filled redundantly, data is digitised heavily after each camp, and past client information is unavailable when it matters most. Ambient digital care at the point of outreach closes three gaps at once — continuity between quarterly camps, roll-out of new interventions and integrated care pathways, and consistency when less-experienced third-party staff supplement the core team during peak workload — raising the quality and coverage of decentralised services for key populations at scale.</p>
-    </div>
-
-    <h3>Early signals <span class="tag tag-pending">🟡 Quantitative results pending</span></h3>
-    <ul>
-      <li>100% digitisation of HIV testing and clinical assessment touch-points.</li>
-      <li>Adherence to built-in protocol support for Lenacapavir roll-out.</li>
-      <li>Time spent on documentation and reporting cut down by 5x.</li>
-    </ul>
-
-    <div class="feedback">
-      <p class="feedback-label">Feedback from DICE service providers</p>
-      <p>Aira is seen as enabling more meaningful interactions with clients. It supports clinical decision-making — suggesting management options, identifying when a client may need further care, and prompting next steps — while cutting the repetitive documentation burden. They recommend it as a valuable initiative for improving service delivery at the Drop-in Centre.</p>
-    </div>
-
     <h3>Aira in action</h3>
     <div class="workflow">
       <div class="wf-step">
-        <div class="wf-icon">📱</div>
+        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-tablet"/></svg></div>
         <div class="wf-label">Tablet at outreach camp</div>
         <div class="wf-desc">One device replaces the stack of paper forms.</div>
       </div>
-      <div class="wf-arrow">→</div>
+      <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
       <div class="wf-step">
-        <div class="wf-icon">👂</div>
+        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-notes"/></svg></div>
         <div class="wf-label">Ambient documentation</div>
         <div class="wf-desc">Captured during the consult, not after.</div>
       </div>
-      <div class="wf-arrow">→</div>
+      <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
       <div class="wf-step">
-        <div class="wf-icon">🔄</div>
+        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-connected"/></svg></div>
         <div class="wf-label">Digital continuity-of-care</div>
         <div class="wf-desc">Past clinical and HIV risk context improves decision-making and counselling.</div>
       </div>
-      <div class="wf-arrow">→</div>
+      <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
       <div class="wf-step">
-        <div class="wf-icon">📋</div>
+        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-protocol"/></svg></div>
         <div class="wf-label">Protocol on-device</div>
         <div class="wf-desc">Consistent care regardless of which staff deliver it.</div>
       </div>
     </div>
 
-    <h3>Planned reach</h3>
-    <div class="scale">
-      <div>
-        <p class="scale-goal">Goal</p>
-        <p class="scale-val">300+ / month</p>
+    <button class="read-more-btn" type="button" aria-expanded="false" data-target="vision-nairobi">
+      Read more
+      <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+    </button>
+    <div class="vision-panel" id="vision-nairobi">
+      <div class="vision">
+        <p>At Kitengela outreach camps, paper forms are filled redundantly, data is digitised heavily after each camp, and past client information is unavailable when it matters most. Ambient digital care at the point of outreach closes three gaps at once — continuity between quarterly camps, roll-out of new interventions and integrated care pathways, and consistency when less-experienced third-party staff supplement the core team during peak workload — raising the quality and coverage of decentralised services for key populations at scale.</p>
       </div>
-      <div class="scale-text"><strong>Covering over 300 monthly screening and clinical care encounters</strong> delivered via outreach — extending from the starting cohort of female sex workers to four key population types served by the centre.</div>
+    </div>
+
+    <h3 class="h3-accent">Early signals</h3>
+    <div class="signals-grid">
+      <div class="signal-card">
+        <div class="sc-body">
+          <svg class="sc-icon" aria-hidden="true"><use href="#i-sig-digitise"/></svg>
+          <p class="sc-text">100% digitisation of HIV testing and clinical assessment touch-points.</p>
+        </div>
+      </div>
+      <div class="signal-card">
+        <div class="sc-body">
+          <svg class="sc-icon" aria-hidden="true"><use href="#i-sig-protocol"/></svg>
+          <p class="sc-text">Adherence to built-in protocol support for Lenacapavir roll-out.</p>
+        </div>
+      </div>
+      <div class="signal-card">
+        <div class="sc-body">
+          <svg class="sc-icon" aria-hidden="true"><use href="#i-sig-5x"/></svg>
+          <p class="sc-text">Time spent on documentation and reporting cut down by 5x.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-block">
+      <div class="feedback-illustration">
+        <svg aria-hidden="true"><use href="#illustration-feedback"/></svg>
+      </div>
+      <div class="feedback-text">
+        <p class="feedback-label">Feedback from DICE service providers</p>
+        <p>Aira is seen as enabling more meaningful interactions with clients. It supports clinical decision-making — suggesting management options, identifying when a client may need further care, and prompting next steps — while cutting the repetitive documentation burden. They recommend it as a valuable initiative for improving service delivery at the Drop-in Centre.</p>
+      </div>
+    </div>
+
+    <div class="scale-row">
+      <span class="scale-label">Planned reach</span>
+      <div class="scale-divider"></div>
+      <span class="scale-val">300+ / month</span>
+      <div class="scale-divider"></div>
+      <p class="scale-text">Screening and clinical care via outreach — extending to four key population types.</p>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <section id="footer">
-    <p class="sec-eyebrow">Footer</p>
-    <dl class="kv">
-      <dt>Brand</dt><dd>Aira by <strong>qure.ai</strong> · co-brand lock-up</dd>
-      <dt>Last updated</dt><dd>Auto-timestamp</dd>
-      <dt>Small print</dt><dd>On-going pilot data. Non-confidential share-out. Live sites; content updates as learning deepens in the field.</dd>
-    </dl>
-  </section>
+  <footer class="footer">
+    <img src="images/aira-qure-logo.svg" alt="Aira by qure.ai" class="footer-logo">
+  </footer>
 
 </div>
+
+<script>
+  // Collapsible vision panels
+  document.querySelectorAll('.read-more-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      const panel = document.getElementById(targetId);
+      const isOpen = panel.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      btn.childNodes[0].nodeValue = isOpen ? 'Hide ' : 'Read more ';
+    });
+  });
+</script>
+
 </body>
 </html>
