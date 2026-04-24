@@ -138,7 +138,7 @@
   /* ---------- Flow diagram (reference style) ---------- */
   .flow-diagram {
     margin: 0;
-    padding: 48px 48px 48px 90px;
+    padding: 48px 48px 40px 48px;
     background: var(--white);
     border-radius: var(--radius-xl);
     box-shadow: 0 30px 80px -30px rgba(15, 35, 50, 0.2);
@@ -148,12 +148,12 @@
   .flow-vision-badge {
     display: inline-block;
     font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.16em;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--peach);
     font-weight: 500;
-    padding: 8px 18px;
+    padding: 8px 16px;
     border: 1.5px solid var(--peach);
     background: var(--peach-wash);
     border-radius: var(--radius);
@@ -169,101 +169,119 @@
     text-transform: uppercase;
     color: var(--ink-3);
     font-weight: 500;
-    margin: 48px 0 20px;
+    margin: 60px 0 40px;
   }
 
-  /* Spine + cards container */
-  .flow-body {
-    position: relative;
+  /* ---------- Setting row — horizontal icon-circle layout ---------- */
+  .setting-row {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr 60px 1fr;
+    align-items: center;
+    margin: 0 0 40px;
   }
-
-  .flow-spine {
-    position: absolute;
-    left: -42px;
-    top: 0;
-    bottom: 40px;
-    width: 2px;
-    background: var(--peach);
-  }
-  .flow-spine::before {
-    content: "";
-    position: absolute;
-    top: -1px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0; height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-bottom: 9px solid var(--peach);
-  }
-
-  .flow-cards-v {
+  .setting {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    position: relative;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
   }
-  .flow-card-wrap {
-    position: relative;
+  .setting-icon {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    border: 1.5px solid var(--peach);
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--peach);
   }
-  .flow-card-wrap::before {
-    content: "";
-    position: absolute;
-    left: -42px;
-    top: 34px;
-    width: 42px;
+  .setting-icon svg {
+    width: 36px;
+    height: 36px;
+  }
+  .setting-label {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .setting-sub {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: -8px 0 0;
+    font-weight: 500;
+  }
+  .setting-line {
     height: 1.5px;
     background: var(--peach);
+    align-self: center;
+    margin-bottom: 42px;
   }
-  .nav-card {
-    display: block;
+
+  /* ---------- Setting description cards ---------- */
+  .setting-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .setting-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
     text-decoration: none;
     color: var(--ink);
     border: 1px solid var(--peach);
     border-radius: var(--radius-lg);
-    padding: 22px 28px;
+    padding: 24px 24px 22px;
     background: var(--white);
-    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s, box-shadow 0.2s;
+    min-height: 240px;
   }
-  .nav-card:hover {
+  .setting-card:hover {
     background: var(--peach-wash);
-    border-color: var(--peach);
-    transform: translateX(2px);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -12px rgba(255, 120, 105, 0.28);
   }
-  .nav-story {
-    font-size: 16px;
+  .sc-heading {
+    font-size: 15.5px;
     line-height: 1.5;
     color: var(--ink);
-    margin: 0 0 10px;
+    margin: 0;
     font-weight: 500;
     letter-spacing: -0.005em;
   }
-  .nav-story .highlight {
+  .sc-head-accent {
     color: var(--peach);
     font-weight: 600;
   }
-  .nav-meta {
+  .sc-meta {
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
     display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-    padding-top: 2px;
+    flex-direction: column;
+    gap: 4px;
   }
-  .nav-site {
+  .sc-loc {
     font-family: var(--sans);
-    font-size: 13.5px;
-    color: var(--ink);
+    font-size: 13px;
+    color: var(--ink-2);
     margin: 0;
     font-weight: 400;
   }
-  .nav-partner {
+  .sc-partner {
     font-family: var(--sans);
     font-size: 13.5px;
     color: var(--ink);
     margin: 0;
     font-weight: 600;
-    padding-left: 14px;
-    border-left: 1px solid var(--line);
   }
 
   /* ---------- Main wrap ---------- */
@@ -457,7 +475,7 @@
     background: var(--white);
     border: 1px solid var(--ink);
   }
-  .site.site-enugu .insight { border-color: var(--ink); background: var(--white); }
+  .site.site-enugu .insight { border-color: var(--indigo); background: var(--lavender-wash); }
   .site.site-adamawa .insight { border-color: var(--indigo); background: var(--lavender-wash); }
   .insight-line {
     font-size: 19px;
@@ -478,10 +496,10 @@
   .barchart { margin: 18px 0 8px; }
   .bar-row {
     display: grid;
-    grid-template-columns: 120px 1fr 80px;
+    grid-template-columns: 120px 1fr 200px;
     gap: 16px;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     font-size: 13px;
   }
   .bar-label {
@@ -500,12 +518,17 @@
     overflow: hidden;
     border: 1px solid var(--line);
   }
+  /* Aira bar shows compressed total time — only ~46% of baseline */
+  .bar-track.compressed {
+    max-width: 46%;
+  }
   .bar-track.target { border: 1px dashed var(--peach); }
   .seg {
     display: flex; align-items: center; justify-content: center;
     font-size: 11.5px; font-weight: 600; white-space: nowrap;
     font-family: var(--mono);
   }
+  .seg-0 { background: var(--yellow); color: var(--ink); }
   .seg-1 { background: var(--peach); color: var(--white); }
   .seg-2 { background: var(--ai-black); color: var(--white); }
   .seg-3 { background: var(--lavender-bright); color: var(--ink); }
@@ -514,7 +537,37 @@
     font-size: 12px;
     color: var(--ink-2);
     font-weight: 500;
+    white-space: nowrap;
   }
+  .bar-providers {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    padding-left: 14px;
+    border-left: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    line-height: 1.2;
+  }
+  .bar-providers strong {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--indigo);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .bar-providers .bp-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .bar-providers.accent strong { color: var(--peach); }
   .legend {
     margin: 14px 0 0;
     display: flex;
@@ -682,9 +735,9 @@
     gap: 20px;
     padding: 20px 24px;
     margin: 40px 0 0;
-    background: var(--lavender-bright);
+    background: transparent;
     border-radius: var(--radius-lg);
-    border: 1px solid var(--indigo);
+    border: 1px solid var(--line);
   }
   .scale-label {
     font-family: var(--mono);
@@ -700,16 +753,16 @@
   }
   .scale-val {
     font-family: var(--sans);
-    font-size: 19px;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 700;
     color: var(--indigo);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
     white-space: nowrap;
   }
   .scale-text {
-    font-size: 13.5px;
+    font-size: 14px;
     color: var(--ink-2);
-    line-height: 1.5;
+    line-height: 1.55;
     flex: 1;
   }
   .scale-divider {
@@ -743,17 +796,20 @@
     h1 { font-size: 32px; }
     h2 { font-size: 24px; }
     .hero { padding: 20px 0 0; }
-    .flow-diagram { padding: 56px 22px 28px 56px; }
+    .flow-diagram { padding: 56px 22px 28px 22px; }
     .flow-vision-badge { top: 22px; left: 22px; }
-    .flow-spine { left: -22px; }
-    .flow-card-wrap::before { left: -22px; width: 22px; }
+    .flow-caption { margin: 56px 0 28px; }
     .hero-lead { font-size: 15px; margin: 0 0 32px; }
-    .nav-card { padding: 18px 20px; }
+    .setting-row { grid-template-columns: 1fr; gap: 28px; }
+    .setting-line { display: none; }
+    .setting-cards { grid-template-columns: 1fr; gap: 12px; }
+    .setting-card { min-height: auto; }
     .site-hero { grid-template-columns: 1fr; min-height: auto; }
     .site-hero-image { min-height: 200px; aspect-ratio: 16 / 10; }
     .workflow { flex-direction: column; }
     .wf-arrow { padding: 6px 0; transform: rotate(90deg); }
     .bar-row { grid-template-columns: 1fr; gap: 8px; }
+    .bar-providers { padding-left: 0; border-left: none; border-top: 1px solid var(--line); padding-top: 8px; }
     .signals-grid,
     .signals-grid.two-col { grid-template-columns: 1fr; }
     .site-hero-info dl { grid-template-columns: 1fr; gap: 4px; }
@@ -839,6 +895,28 @@
     <symbol id="i-chevron-down" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <path d="M3 4.5 L6 7.5 L9 4.5"/>
     </symbol>
+    <!-- Setting: PHC (health facility with cross) -->
+    <symbol id="i-setting-phc" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 30 V16 L18 7 L30 16 V30 Z"/>
+      <path d="M14 30 V22 H22 V30"/>
+      <path d="M18 12 V18 M15 15 H21"/>
+    </symbol>
+    <!-- Setting: Home care (phone with signal) -->
+    <symbol id="i-setting-home" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="12" y="6" width="14" height="24" rx="2.5"/>
+      <path d="M18 25 H20"/>
+      <path d="M27 11 a4 4 0 0 1 0 6"/>
+      <path d="M29 8 a7 7 0 0 1 0 12"/>
+    </symbol>
+    <!-- Setting: Outreach (group of 3 people) -->
+    <symbol id="i-setting-outreach" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="18" cy="12" r="3.5"/>
+      <circle cx="8.5" cy="14" r="2.8"/>
+      <circle cx="27.5" cy="14" r="2.8"/>
+      <path d="M12 25 a6 6 0 0 1 12 0"/>
+      <path d="M4 26 a5 5 0 0 1 5.5 -4.5"/>
+      <path d="M32 26 a5 5 0 0 0 -5.5 -4.5"/>
+    </symbol>
 
     <!-- Signal-card icons: Enugu -->
     <symbol id="i-sig-timesaved" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -912,51 +990,61 @@
   <div class="wrap-inner">
     <div class="topbar">
       <img src="images/Aira_logo_full_white.svg" alt="Aira by qure.ai" class="logo-top">
-      <div class="tag-status">Highlights From The Field</div>
+      <div class="tag-status">AI Care Delivery Platform</div>
     </div>
 
     <section class="hero">
       <p class="eyebrow">Signals From The Field</p>
-      <h1>Building the Path to Decentralised and <span class="h1-accent">Integrated HIV Care</span></h1>
-      <p class="hero-lead">Imagine a care system where health workers are freed from admin work to focus fully on the patient in front of them. Integrated pathways run from day one, without the overhead of upskilling and supervision. HIV services move closer to where patients live — decentralised to PHCs and the community without compromise in quality. Automated, language-matched outreach lifts the tracking burden off small teams and keeps adherence on course. Every clinical decision and every patient conversation is personalised to context. And behind it all, data flows in real time — timely, accurate, and complete enough for full program oversight.</p>
+      <h1>Proving Pathways to Cost-effective <span class="h1-accent">Integrated HIV Care</span></h1>
+      <p class="hero-lead">Imagine a care system where health workers are freed from admin work to focus fully on the patient in front of them. Integrated pathways run from day one, without the overhead of upskilling and supervision. HIV services move closer to where patients live — decentralised to PHCs and the community without compromise in quality. Automated, language-matched outreach lifts the tracking burden off small teams and keeps adherence on course. Data flows in real time — timely, accurate, and complete enough for full program oversight. Three field programmes, spanning home-based care, community outreach, and PHC-integrated delivery, illustrate the shift in practice.</p>
 
-      <!-- Flow diagram: vision badge at top, spine down, cards branching right -->
+      <!-- Flow diagram: One vision label + three settings horizontally connected, with description cards below -->
       <div class="flow-diagram">
-        <span class="flow-vision-badge">One vision</span>
+        <span class="flow-vision-badge">Vision of cost-effective integrated care</span>
+        <p class="flow-caption">Three shifts in practice</p>
 
-        <p class="flow-caption">Three stories</p>
-
-        <div class="flow-body">
-          <div class="flow-spine"></div>
-          <div class="flow-cards-v">
-            <div class="flow-card-wrap">
-              <a class="nav-card" href="#s-enugu">
-                <p class="nav-story"><span class="highlight">Restoring clinical face-time</span> with point-of-care digitisation that integrates with the national EMR.</p>
-                <div class="nav-meta">
-                  <p class="nav-site">Enugu, Nigeria 🇳🇬</p>
-                  <p class="nav-partner">Caritas Health</p>
-                </div>
-              </a>
-            </div>
-            <div class="flow-card-wrap">
-              <a class="nav-card" href="#s-adamawa">
-                <p class="nav-story"><span class="highlight">Scaling retention work</span> through automated multilingual patient outreach — without scaling capacity.</p>
-                <div class="nav-meta">
-                  <p class="nav-site">Adamawa, Nigeria 🇳🇬</p>
-                  <p class="nav-partner">Adamawa State Government &amp; AHNI</p>
-                </div>
-              </a>
-            </div>
-            <div class="flow-card-wrap">
-              <a class="nav-card" href="#s-nairobi">
-                <p class="nav-story"><span class="highlight">Mobilising continuity and consistency</span> of care with ambient digital care at the point of outreach.</p>
-                <div class="nav-meta">
-                  <p class="nav-site">Kitengela, Nairobi 🇰🇪</p>
-                  <p class="nav-partner">Kenya Red Cross Society</p>
-                </div>
-              </a>
-            </div>
+        <div class="setting-row">
+          <div class="setting">
+            <div class="setting-icon"><svg aria-hidden="true"><use href="#i-setting-phc"/></svg></div>
+            <p class="setting-label">Primary Health Centre</p>
+            <p class="setting-sub">Institutional · Facility</p>
           </div>
+          <div class="setting-line"></div>
+          <div class="setting">
+            <div class="setting-icon"><svg aria-hidden="true"><use href="#i-setting-outreach"/></svg></div>
+            <p class="setting-label">Outreach</p>
+            <p class="setting-sub">Community · Field</p>
+          </div>
+          <div class="setting-line"></div>
+          <div class="setting">
+            <div class="setting-icon"><svg aria-hidden="true"><use href="#i-setting-home"/></svg></div>
+            <p class="setting-label">Home Care</p>
+            <p class="setting-sub">Individual · Home</p>
+          </div>
+        </div>
+
+        <div class="setting-cards">
+          <a class="setting-card" href="#s-enugu">
+            <p class="sc-heading"><span class="sc-head-accent">Task-shifting to PHCs</span> by streamlining specialised roles into a single provider — with ambient intelligence and automated digitisation.</p>
+            <div class="sc-meta">
+              <p class="sc-loc">Enugu, Nigeria 🇳🇬</p>
+              <p class="sc-partner">Caritas Health</p>
+            </div>
+          </a>
+          <a class="setting-card" href="#s-nairobi">
+            <p class="sc-heading"><span class="sc-head-accent">Bringing continuity and consistency at the point of outreach</span> — with point-of-care digitisation and decision support.</p>
+            <div class="sc-meta">
+              <p class="sc-loc">Kitengela, Nairobi 🇰🇪</p>
+              <p class="sc-partner">Kenya Red Cross Society &amp; NASCOP</p>
+            </div>
+          </a>
+          <a class="setting-card" href="#s-adamawa">
+            <p class="sc-heading"><span class="sc-head-accent">Sustaining retention at scale without adding cadres</span> — through multilingual automated patient outreach.</p>
+            <div class="sc-meta">
+              <p class="sc-loc">Adamawa, Nigeria 🇳🇬</p>
+              <p class="sc-partner">Adamawa State Government &amp; AHNI</p>
+            </div>
+          </a>
         </div>
       </div>
     </section>
@@ -968,7 +1056,7 @@
   <!-- ============ ENUGU ============ -->
   <section class="site site-enugu" id="s-enugu">
     <p class="site-eyebrow">Site 01 · Enugu, Nigeria 🇳🇬</p>
-    <h2>Restoring Clinical Face-Time with Point-of-Care Digitisation</h2>
+    <h2>Task-shifting to PHCs by streamlining clinical focus and administrative burden</h2>
 
     <h3>Overview</h3>
     <div class="site-hero">
@@ -976,10 +1064,10 @@
       <div class="site-hero-info">
         <dl>
           <dt>Location</dt><dd>Enugu, Nigeria</dd>
-          <dt>Sites</dt><dd>Two ART centres and one primary health centre</dd>
+          <dt>Sites</dt><dd>ART centres and primary health centres</dd>
           <dt>Partner</dt><dd>Caritas Health</dd>
           <dt>Module</dt><dd>Aira Co-Consult + Aira Reach</dd>
-          <dt>Status</dt><dd>Live since late March 2026</dd>
+          <dt>Status</dt><dd>Programmatic scoping and integration since November 2025</dd>
         </dl>
       </div>
     </div>
@@ -988,26 +1076,26 @@
     <div class="workflow">
       <div class="wf-step">
         <div class="wf-icon"><svg aria-hidden="true"><use href="#i-conversation"/></svg></div>
-        <div class="wf-label">Provider and client in conversation</div>
-        <div class="wf-desc">The consultation runs as it always has.</div>
+        <div class="wf-label">One provider runs the encounter</div>
+        <div class="wf-desc">A single trained PHC provider conducts what a clinician, counsellor, and data clerk would together deliver at an ART centre.</div>
       </div>
       <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
       <div class="wf-step">
         <div class="wf-icon"><svg aria-hidden="true"><use href="#i-listen-prompts"/></svg></div>
-        <div class="wf-label">Aira listens, structures and nudges</div>
-        <div class="wf-desc">Notes captured ambiently; protocol prompts surface during the consult.</div>
+        <div class="wf-label">Ambient intelligence listens and prompts</div>
+        <div class="wf-desc">Notes captured ambiently; clinical and counselling protocol prompts surface in real time.</div>
       </div>
       <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
       <div class="wf-step">
         <div class="wf-icon"><svg aria-hidden="true"><use href="#i-sync"/></svg></div>
         <div class="wf-label">Direct sync to national records</div>
-        <div class="wf-desc">No paper form, no evening data entry backlog.</div>
+        <div class="wf-desc">Paper-to-EMR double handling eliminated; no separate data-clerk function required.</div>
       </div>
       <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
       <div class="wf-step">
         <div class="wf-icon"><svg aria-hidden="true"><use href="#i-check"/></svg></div>
-        <div class="wf-label">Clinician moves on</div>
-        <div class="wf-desc">Face-time restored; data operator load reduced.</div>
+        <div class="wf-label">Three functions, one equipped role</div>
+        <div class="wf-desc">Clinical, counselling, and documentation compressed into one task-shifted provider.</div>
       </div>
     </div>
 
@@ -1017,41 +1105,50 @@
     </button>
     <div class="vision-panel" id="vision-enugu">
       <div class="vision">
-        <p>Ambient point-of-care digitisation can eliminate the documentation tax on every clinical encounter — restoring face-time with patients, erasing the paper-to-EMR double handling that drains data operator days, and making high-quality differentiated service delivery possible even at the primary health centre level, where four staff carry HIV services alongside general primary care with limited specialist oversight.</p>
+        <p>At a traditional ART centre, three specialised staff — clinician, counsellor, and data clerk — share the load of each HIV encounter. At a primary health centre, that separation is unaffordable: four staff carry HIV services alongside general primary care, with limited specialist oversight. Ambient scribing absorbs the data-clerk function. On-device protocol prompts extend the clinician's and counsellor's reach. Automated patient outreach sustains retention. A single PHC provider, equipped this way, delivers full-spectrum HIV care with quality that matches the specialised ART centre.</p>
       </div>
     </div>
 
     <div class="insight" style="margin-top:28px;">
-      <p class="insight-line">For every minute a provider spends talking to the client, the client spends over a minute watching them write.</p>
-      <p class="insight-impl">Documentation is the single biggest threat to counselling quality at the point of care.</p>
+      <p class="insight-line">At baseline today, only <strong>14% of the patient journey is actual clinical engagement</strong>. The other 86% is retention calls, waiting, and documentation — split across three cadres.</p>
+      <p class="insight-impl">Compressing those three cadres into one equipped role, without compromising quality, is the shift the pilot is built to prove.</p>
     </div>
 
     <div class="barchart" style="margin-top: 28px;">
       <div class="bar-row">
         <div class="bar-label">Today<br>(baseline)</div>
         <div class="bar-track">
-          <div class="seg seg-1" style="width: 43%">43%</div>
-          <div class="seg seg-2" style="width: 30%">30%</div>
-          <div class="seg seg-3" style="width: 27%">27%</div>
+          <div class="seg seg-0" style="width: 9%">9%</div>
+          <div class="seg seg-1" style="width: 14%">14%</div>
+          <div class="seg seg-2" style="width: 21%">21%</div>
+          <div class="seg seg-3" style="width: 56%">56%</div>
         </div>
-        <div class="bar-total">5.9 min</div>
+        <div class="bar-providers">
+          <strong>3 providers</strong>
+          <span class="bp-label">Retention nurse · clinician/counsellor · data clerk</span>
+        </div>
       </div>
       <div class="bar-row">
         <div class="bar-label">Expected<br>with Aira</div>
-        <div class="bar-track target">
+        <div class="bar-track target compressed">
+          <div class="seg seg-0" style="width: 5%"></div>
           <div class="seg seg-1" style="width: 90%">90%</div>
-          <div class="seg seg-2" style="width: 5%">5%</div>
-          <div class="seg seg-3" style="width: 5%">&lt;5%</div>
+          <div class="seg seg-2" style="width: 3%"></div>
+          <div class="seg seg-3" style="width: 2%"></div>
         </div>
-        <div class="bar-total">target</div>
+        <div class="bar-providers accent">
+          <strong>1 provider</strong>
+          <span class="bp-label">Task-shifted PHC role</span>
+        </div>
       </div>
     </div>
     <div class="legend">
+      <div class="legend-item"><span class="swatch" style="background: var(--yellow);"></span>Patient tracking — reminders and follow-up</div>
       <div class="legend-item"><span class="swatch" style="background: var(--peach);"></span>Direct clinical engagement</div>
       <div class="legend-item"><span class="swatch" style="background: var(--ai-black);"></span>Client idle — watching provider document</div>
       <div class="legend-item"><span class="swatch" style="background: var(--lavender-bright);"></span>Documentation before or after the encounter</div>
     </div>
-    <p class="chart-note">Target: direct clinical engagement becomes the dominant use of every minute with the client; documentation before or after drops below 5% through direct sync to the national records system. Measurement of actual intervention impact is underway.</p>
+    <p class="chart-note">Across the full patient journey — from reminder, to clinical encounter, to documentation — direct clinical engagement becomes the dominant use of time, manual patient tracking collapses into automated outreach, and the three specialised roles that traditionally share each journey compress into a single task-shifted PHC provider. Measurement of actual intervention impact is underway.</p>
 
     <h3 class="h3-accent">Early signals</h3>
     <div class="signals-grid">
@@ -1078,16 +1175,113 @@
     <div class="scale-row">
       <span class="scale-label">Planned reach</span>
       <div class="scale-divider"></div>
-      <span class="scale-val">500+ / month</span>
+      <span class="scale-val">Full HIV service line</span>
       <div class="scale-divider"></div>
-      <p class="scale-text">HIV testing and ART refill encounters across two ART hubs and the primary health centre.</p>
+      <p class="scale-text">HIV testing, treatment initiation, and ART refill encounters across participating ART centres and primary health centres — with PHCs now delivering full-spectrum care under task-shifted supervision.</p>
+    </div>
+  </section>
+
+  <!-- ============ NAIROBI ============ -->
+  <section class="site site-nairobi" id="s-nairobi">
+    <p class="site-eyebrow">Site 03 · Kitengela, Nairobi 🇰🇪</p>
+    <h2>Mobilising continuity and consistency of care with outreach services</h2>
+
+    <h3>Overview</h3>
+    <div class="site-hero">
+      <div class="site-hero-image kitengela" role="img" aria-label="A Kenya Red Cross Society counsellor using a tablet during an outreach consultation"></div>
+      <div class="site-hero-info">
+        <dl>
+          <dt>Location</dt><dd>Kitengela, Nairobi, Kenya</dd>
+          <dt>Site</dt><dd>Kitengela Drop-in Centre and quarterly outreach camps</dd>
+          <dt>Partner</dt><dd>Kenya Red Cross Society &amp; NASCOP</dd>
+          <dt>Module</dt><dd>Aira Co-Consult</dd>
+          <dt>Status</dt><dd>Programmatic scoping and integration since December 2025</dd>
+        </dl>
+      </div>
+    </div>
+
+    <h3>Aira in action</h3>
+    <div class="workflow">
+      <div class="wf-step">
+        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-tablet"/></svg></div>
+        <div class="wf-label">Tablet at outreach camp</div>
+        <div class="wf-desc">One device replaces the stack of paper forms.</div>
+      </div>
+      <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+      <div class="wf-step">
+        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-notes"/></svg></div>
+        <div class="wf-label">Ambient documentation</div>
+        <div class="wf-desc">Captured during the consult, not after.</div>
+      </div>
+      <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+      <div class="wf-step">
+        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-connected"/></svg></div>
+        <div class="wf-label">Digital continuity-of-care</div>
+        <div class="wf-desc">Past clinical and HIV risk context improves decision-making and counselling.</div>
+      </div>
+      <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+      <div class="wf-step">
+        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-protocol"/></svg></div>
+        <div class="wf-label">Protocol on-device</div>
+        <div class="wf-desc">Consistent care regardless of which staff deliver it.</div>
+      </div>
+    </div>
+
+    <button class="read-more-btn" type="button" aria-expanded="false" data-target="vision-nairobi">
+      Read more
+      <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+    </button>
+    <div class="vision-panel" id="vision-nairobi">
+      <div class="vision">
+        <p>At Kitengela outreach camps, paper forms are filled redundantly, data is digitised heavily after each camp, and past client information is unavailable when it matters most. Ambient digital care at the point of outreach closes three gaps at once — continuity between quarterly camps, roll-out of new interventions and integrated care pathways, and consistency when less-experienced third-party staff supplement the core team during peak workload — raising the quality and coverage of decentralised services for key populations at scale.</p>
+      </div>
+    </div>
+
+    <h3 class="h3-accent">Early signals</h3>
+    <div class="signals-grid">
+      <div class="signal-card">
+        <div class="sc-body">
+          <svg class="sc-icon" aria-hidden="true"><use href="#i-sig-digitise"/></svg>
+          <p class="sc-text">100% digitisation of HIV testing and clinical assessment touch-points.</p>
+        </div>
+      </div>
+      <div class="signal-card">
+        <div class="sc-body">
+          <svg class="sc-icon" aria-hidden="true"><use href="#i-sig-protocol"/></svg>
+          <p class="sc-text">Adherence to built-in protocol support for Lenacapavir roll-out.</p>
+        </div>
+      </div>
+      <div class="signal-card">
+        <div class="sc-body">
+          <svg class="sc-icon" aria-hidden="true"><use href="#i-sig-5x"/></svg>
+          <p class="sc-text">Time spent on documentation and reporting cut down by 5x.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-block">
+      <div class="feedback-illustration">
+        <svg aria-hidden="true"><use href="#illustration-feedback"/></svg>
+      </div>
+      <div class="feedback-text">
+        <p class="feedback-label">Feedback from DICE service providers</p>
+        <p>Aira is seen as enabling more meaningful interactions with clients. It supports clinical decision-making — suggesting management options, identifying when a client may need further care, and prompting next steps — while cutting the repetitive documentation burden. They recommend it as a valuable initiative for improving service delivery at the Drop-in Centre.</p>
+      </div>
+    </div>
+
+    <div class="scale-row">
+      <span class="scale-label">Planned reach</span>
+      <div class="scale-divider"></div>
+      <span class="scale-val">Four key populations</span>
+      <div class="scale-divider"></div>
+      <p class="scale-text">Comprehensive HIV screening and differentiated clinical care delivered through drop-in and quarterly outreach services across four key population groups.</p>
     </div>
   </section>
 
   <!-- ============ ADAMAWA ============ -->
   <section class="site site-adamawa" id="s-adamawa">
     <p class="site-eyebrow">Site 02 · Adamawa, Nigeria 🇳🇬</p>
-    <h2>Scaling Retention Through Automated Patient Outreach</h2>
+    <h2>Sustaining retention and adherence at scale with automated patient outreach</h2>
 
     <h3>Overview</h3>
     <div class="site-hero">
@@ -1098,7 +1292,7 @@
           <dt>Site</dt><dd>Modibbo Adama University Teaching Hospital ART centre</dd>
           <dt>Partner</dt><dd>Adamawa State Government and AHNI</dd>
           <dt>Module</dt><dd>Aira Reach</dd>
-          <dt>Status</dt><dd>Live since March 2026</dd>
+          <dt>Status</dt><dd>Programmatic scoping and integration since November 2025</dd>
         </dl>
       </div>
     </div>
@@ -1183,106 +1377,9 @@
     <div class="scale-row">
       <span class="scale-label">Planned reach</span>
       <div class="scale-divider"></div>
-      <span class="scale-val">2,000+ patients</span>
+      <span class="scale-val">Full PLHIV cohort</span>
       <div class="scale-divider"></div>
-      <p class="scale-text">On-time appointment reminders and adherence support — the full MAUTH cohort.</p>
-    </div>
-  </section>
-
-  <!-- ============ NAIROBI ============ -->
-  <section class="site site-nairobi" id="s-nairobi">
-    <p class="site-eyebrow">Site 03 · Kitengela, Nairobi 🇰🇪</p>
-    <h2>Mobilising Continuity and Consistency of Care in Outreach Services</h2>
-
-    <h3>Overview</h3>
-    <div class="site-hero">
-      <div class="site-hero-image kitengela" role="img" aria-label="A Kenya Red Cross Society counsellor using a tablet during an outreach consultation"></div>
-      <div class="site-hero-info">
-        <dl>
-          <dt>Location</dt><dd>Kitengela, Nairobi, Kenya</dd>
-          <dt>Site</dt><dd>Kitengela Drop-in Centre and quarterly outreach camps</dd>
-          <dt>Partner</dt><dd>Kenya Red Cross Society</dd>
-          <dt>Module</dt><dd>Aira Co-Consult</dd>
-          <dt>Status</dt><dd>Live since April 2026</dd>
-        </dl>
-      </div>
-    </div>
-
-    <h3>Aira in action</h3>
-    <div class="workflow">
-      <div class="wf-step">
-        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-tablet"/></svg></div>
-        <div class="wf-label">Tablet at outreach camp</div>
-        <div class="wf-desc">One device replaces the stack of paper forms.</div>
-      </div>
-      <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
-      <div class="wf-step">
-        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-notes"/></svg></div>
-        <div class="wf-label">Ambient documentation</div>
-        <div class="wf-desc">Captured during the consult, not after.</div>
-      </div>
-      <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
-      <div class="wf-step">
-        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-connected"/></svg></div>
-        <div class="wf-label">Digital continuity-of-care</div>
-        <div class="wf-desc">Past clinical and HIV risk context improves decision-making and counselling.</div>
-      </div>
-      <div class="wf-arrow"><svg aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
-      <div class="wf-step">
-        <div class="wf-icon"><svg aria-hidden="true"><use href="#i-protocol"/></svg></div>
-        <div class="wf-label">Protocol on-device</div>
-        <div class="wf-desc">Consistent care regardless of which staff deliver it.</div>
-      </div>
-    </div>
-
-    <button class="read-more-btn" type="button" aria-expanded="false" data-target="vision-nairobi">
-      Read more
-      <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg>
-    </button>
-    <div class="vision-panel" id="vision-nairobi">
-      <div class="vision">
-        <p>At Kitengela outreach camps, paper forms are filled redundantly, data is digitised heavily after each camp, and past client information is unavailable when it matters most. Ambient digital care at the point of outreach closes three gaps at once — continuity between quarterly camps, roll-out of new interventions and integrated care pathways, and consistency when less-experienced third-party staff supplement the core team during peak workload — raising the quality and coverage of decentralised services for key populations at scale.</p>
-      </div>
-    </div>
-
-    <h3 class="h3-accent">Early signals</h3>
-    <div class="signals-grid">
-      <div class="signal-card">
-        <div class="sc-body">
-          <svg class="sc-icon" aria-hidden="true"><use href="#i-sig-digitise"/></svg>
-          <p class="sc-text">100% digitisation of HIV testing and clinical assessment touch-points.</p>
-        </div>
-      </div>
-      <div class="signal-card">
-        <div class="sc-body">
-          <svg class="sc-icon" aria-hidden="true"><use href="#i-sig-protocol"/></svg>
-          <p class="sc-text">Adherence to built-in protocol support for Lenacapavir roll-out.</p>
-        </div>
-      </div>
-      <div class="signal-card">
-        <div class="sc-body">
-          <svg class="sc-icon" aria-hidden="true"><use href="#i-sig-5x"/></svg>
-          <p class="sc-text">Time spent on documentation and reporting cut down by 5x.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="feedback-block">
-      <div class="feedback-illustration">
-        <svg aria-hidden="true"><use href="#illustration-feedback"/></svg>
-      </div>
-      <div class="feedback-text">
-        <p class="feedback-label">Feedback from DICE service providers</p>
-        <p>Aira is seen as enabling more meaningful interactions with clients. It supports clinical decision-making — suggesting management options, identifying when a client may need further care, and prompting next steps — while cutting the repetitive documentation burden. They recommend it as a valuable initiative for improving service delivery at the Drop-in Centre.</p>
-      </div>
-    </div>
-
-    <div class="scale-row">
-      <span class="scale-label">Planned reach</span>
-      <div class="scale-divider"></div>
-      <span class="scale-val">300+ / month</span>
-      <div class="scale-divider"></div>
-      <p class="scale-text">Screening and clinical care via outreach — extending to four key population types.</p>
+      <p class="scale-text">On-time appointment reminders and structured adherence support extended across the full cohort of people living with HIV under MAUTH care.</p>
     </div>
   </section>
 
